@@ -1,0 +1,6988 @@
+{
+    "A.2": [
+        {
+            "a00": 6.61847,
+            "a10": -12.26386,
+            "a01": 0.06748,
+            "a20": 15.58507,
+            "a11": -0.12358,
+            "a02": -0.00032,
+            "a30": -8.58441,
+            "a21": 0.03803,
+            "a12": 0.00047
+        }
+    ],
+    "A.3": [
+        {
+            "a0": 2.33,
+            "a1": 3.311,
+            "a2": -0.07806,
+            "a3": 1.153,
+            "a4": -70.15,
+            "a5": 0.002359,
+            "a6": 234.3,
+            "a7": 0.3938,
+            "a8": -0.009,
+            "a9": -3.5e-06,
+            "a10": 5.031,
+            "a11": 0.6896,
+            "a12": 0.9856,
+            "a13": 0.2469
+        }
+    ],
+    "A.4": [
+        {
+            "a1": -2.4949,
+            "a2": 13.376,
+            "a3": 0.18107,
+            "a4": -0.55619,
+            "a5": 1.1133,
+            "a6": 0.00027312,
+            "a7": 0.36351,
+            "a8": 0.00068844,
+            "a9": -13.589,
+            "a10": -3.9963e-06
+        }
+    ],
+    "A.5": [
+        {
+            "Restraint": "Unrestrained",
+            "ODot_LB": 24,
+            "ODot_UB": 60,
+            "a1": 0.052664,
+            "a2": 0.016351,
+            "a3": -0.076914,
+            "a4": -0.031703,
+            "a5": 0.043299,
+            "a6": 0.03893,
+            "a7": 176.5,
+            "a8": 12.264,
+            "a9": -0.14113,
+            "a10": 0.55865,
+            "a11": 0.81006,
+            "a12": 1.2855,
+            "a13": 1.0733,
+            "a14": -1.2781
+        },
+        {
+            "Restraint": "Unrestrained",
+            "ODot_LB": 60,
+            "ODot_UB": 130,
+            "a1": 0.019946,
+            "a2": -0.017357,
+            "a3": -0.034175,
+            "a4": -0.014635,
+            "a5": 0.045815,
+            "a6": 0.026373,
+            "a7": 420.24,
+            "a8": 4.0548,
+            "a9": -0.022115,
+            "a10": 0.017609,
+            "a11": -1.0005,
+            "a12": 0.47759,
+            "a13": 3.7392,
+            "a14": -0.81418
+        },
+        {
+            "Restraint": "Shallow Restrained",
+            "ODot_LB": 24,
+            "ODot_UB": 60,
+            "a1": 0.084123,
+            "a2": -0.0084129,
+            "a3": -0.11528,
+            "a4": -0.017333,
+            "a5": 0.0039591,
+            "a6": 0.11403,
+            "a7": 5.2629,
+            "a8": 1.8411,
+            "a9": -0.011614,
+            "a10": -0.047478,
+            "a11": -0.43161,
+            "a12": 0.64397,
+            "a13": 0.72722,
+            "a14": -0.93066
+        },
+        {
+            "Restraint": "Shallow Restrained",
+            "ODot_LB": 60,
+            "ODot_UB": 130,
+            "a1": 0.067674,
+            "a2": -0.17305,
+            "a3": -0.057658,
+            "a4": -0.041286,
+            "a5": 0.26707,
+            "a6": 0.068693,
+            "a7": -321.79,
+            "a8": 9.3991,
+            "a9": -0.038584,
+            "a10": 0.34474,
+            "a11": -2.8133,
+            "a12": -0.38395,
+            "a13": 6.4848,
+            "a14": 0.27452
+        },
+        {
+            "Restraint": "Deep Restrained",
+            "ODot_LB": 24,
+            "ODot_UB": 60,
+            "a1": 0.088308,
+            "a2": -0.040998,
+            "a3": -0.040322,
+            "a4": -0.015444,
+            "a5": 0.038789,
+            "a6": 0.017068,
+            "a7": 5.4511,
+            "a8": 1.4972,
+            "a9": -0.0054688,
+            "a10": 0.014327,
+            "a11": 0.31327,
+            "a12": -0.31606,
+            "a13": -0.95391,
+            "a14": 0.50239
+        },
+        {
+            "Restraint": "Deep Restrained",
+            "ODot_LB": 60,
+            "ODot_UB": 130,
+            "a1": 0.052093,
+            "a2": 0.020817,
+            "a3": -0.18481,
+            "a4": -0.20545,
+            "a5": 0.0015711,
+            "a6": 0.71846,
+            "a7": -24.066,
+            "a8": 5.0998,
+            "a9": -0.019989,
+            "a10": -0.84123,
+            "a11": 0.5206,
+            "a12": 5.3331,
+            "a13": 0.097584,
+            "a14": -0.8047
+        }
+    ],
+    "A.6": [
+        {
+            "Restraint": "Restrained",
+            "ODot_LB": 24,
+            "ODot_UB": 60,
+            "b1": 2.0943,
+            "b2": -2.1216,
+            "b3": 4.9603,
+            "b4": -0.10732,
+            "b5": 0.14684,
+            "b6": -0.20655,
+            "b7": -12.875,
+            "b8": 9.6345,
+            "b9": 20.647,
+            "b10": -0.0025412,
+            "b11": -0.72364,
+            "b12": 0.82447,
+            "b13": -0.10044,
+            "b14": -0.0076491,
+            "b15": 0.27808
+        },
+        {
+            "Restraint": "Restrained",
+            "ODot_LB": 60,
+            "ODot_UB": 130,
+            "b1": 8.5938,
+            "b2": -8.4617,
+            "b3": 0.05084,
+            "b4": 1.8212,
+            "b5": -2.6125,
+            "b6": -0.0043642,
+            "b7": 2.2334,
+            "b8": 3.0403,
+            "b9": -2.1439,
+            "b10": 0.46322,
+            "b11": 0.89838,
+            "b12": -0.9785,
+            "b13": -0.37365,
+            "b14": 0.40734,
+            "b15": 0.51517
+        },
+        {
+            "Restraint": "Unrestrained",
+            "ODot_LB": 24,
+            "ODot_UB": 60,
+            "b1": 0.51373,
+            "b2": 2.2414,
+            "b3": 2.0453,
+            "b4": -0.11858,
+            "b5": 1.108,
+            "b6": 2.0577,
+            "b7": -0.55512,
+            "b8": 1.4639,
+            "b9": 0.14552,
+            "b10": 1.9569,
+            "b11": -1.8569,
+            "b12": -0.9166,
+            "b13": 0.31298,
+            "b14": 0.1665,
+            "b15": 0.14499
+        },
+        {
+            "Restraint": "Unrestrained",
+            "ODot_LB": 60,
+            "ODot_UB": 130,
+            "b1": 6.1843,
+            "b2": -5.5675,
+            "b3": 0.47193,
+            "b4": 0.80531,
+            "b5": -0.00187,
+            "b6": -0.47213,
+            "b7": 1.6549,
+            "b8": -17.047,
+            "b9": 13.966,
+            "b10": -1.2772,
+            "b11": -4.5033,
+            "b12": 4.331,
+            "b13": -0.14094,
+            "b14": 1.5588,
+            "b15": 0.61818
+        }
+    ],
+    "A.7": [
+        {
+            "Restraint": "Restrained",
+            "ODot_LB": 24,
+            "ODot_UB": 60,
+            "b1": 2.7457,
+            "b2": -1.4101,
+            "b3": -2.5737,
+            "b4": 6.238,
+            "b5": -0.37909,
+            "b6": 0.034119,
+            "b7": 0.036737,
+            "b8": 0.71992,
+            "b9": -2.3456,
+            "b10": -8.9291,
+            "b11": -13.654,
+            "b12": 59.715,
+            "b13": 0.026212,
+            "b14": 0.41035,
+            "b15": 0.059774,
+            "b16": -1.0612,
+            "b17": -0.0018126,
+            "b18": 0.0092948,
+            "b19": 0.027408,
+            "b20": -0.021313
+        },
+        {
+            "Restraint": "Restrained",
+            "ODot_LB": 60,
+            "ODot_UB": 130,
+            "b1": 7.7559,
+            "b2": -6.909,
+            "b3": -2.5054,
+            "b4": 0.86233,
+            "b5": 0.67718,
+            "b6": -1.3103,
+            "b7": -0.027255,
+            "b8": 0.20532,
+            "b9": -7.2058,
+            "b10": -3.9655,
+            "b11": -0.79034,
+            "b12": 6.5658,
+            "b13": -0.053886,
+            "b14": -1.5212,
+            "b15": -0.51238,
+            "b16": 0.84488,
+            "b17": -0.25502,
+            "b18": 0.16989,
+            "b19": 0.11566,
+            "b20": 0.398
+        },
+        {
+            "Restraint": "Unrestrained",
+            "ODot_LB": 24,
+            "ODot_UB": 60,
+            "b1": 3.7362,
+            "b2": -0.37548,
+            "b3": -0.75254,
+            "b4": -0.90938,
+            "b5": 0.38775,
+            "b6": -0.13197,
+            "b7": -0.20077,
+            "b8": -0.22587,
+            "b9": 9.1254,
+            "b10": -2.9932,
+            "b11": -0.30623,
+            "b12": -5.382,
+            "b13": 1.4905,
+            "b14": -0.50407,
+            "b15": -1.2758,
+            "b16": 2.213,
+            "b17": -0.32302,
+            "b18": -0.033743,
+            "b19": -0.23117,
+            "b20": -0.098127
+        },
+        {
+            "Restraint": "Unrestrained",
+            "ODot_LB": 60,
+            "ODot_UB": 130,
+            "b1": 6.6447,
+            "b2": -2.7845,
+            "b3": -5.4475,
+            "b4": 0.59149,
+            "b5": 2.9463,
+            "b6": 0.14509,
+            "b7": -1.8071,
+            "b8": -1.067,
+            "b9": 1.2343,
+            "b10": -2.3982,
+            "b11": -1.7607,
+            "b12": 2.3096,
+            "b13": -0.38439,
+            "b14": 1.3752,
+            "b15": 3.0158,
+            "b16": -1.3837,
+            "b17": 0.20428,
+            "b18": -1.1093,
+            "b19": -0.86043,
+            "b20": -0.56627
+        }
+    ],
+    "A.8": [
+        {
+            "Pmin_%SMYS": 10,
+            "Pmax_%SMYS": 20,
+            "Restraint": "Unrestrained",
+            "log10A": 6.061,
+            "B": -0.423
+        },
+        {
+            "Pmin_%SMYS": 10,
+            "Pmax_%SMYS": 30,
+            "Restraint": "Unrestrained",
+            "log10A": 5.185,
+            "B": -0.403
+        },
+        {
+            "Pmin_%SMYS": 10,
+            "Pmax_%SMYS": 40,
+            "Restraint": "Unrestrained",
+            "log10A": 4.711,
+            "B": -0.385
+        },
+        {
+            "Pmin_%SMYS": 10,
+            "Pmax_%SMYS": 50,
+            "Restraint": "Unrestrained",
+            "log10A": 4.351,
+            "B": -0.375
+        },
+        {
+            "Pmin_%SMYS": 10,
+            "Pmax_%SMYS": 60,
+            "Restraint": "Unrestrained",
+            "log10A": 4.081,
+            "B": -0.37
+        },
+        {
+            "Pmin_%SMYS": 10,
+            "Pmax_%SMYS": 70,
+            "Restraint": "Unrestrained",
+            "log10A": 3.828,
+            "B": -0.371
+        },
+        {
+            "Pmin_%SMYS": 10,
+            "Pmax_%SMYS": 80,
+            "Restraint": "Unrestrained",
+            "log10A": 3.609,
+            "B": -0.376
+        },
+        {
+            "Pmin_%SMYS": 20,
+            "Pmax_%SMYS": 30,
+            "Restraint": "Unrestrained",
+            "log10A": 6.123,
+            "B": -0.37
+        },
+        {
+            "Pmin_%SMYS": 20,
+            "Pmax_%SMYS": 40,
+            "Restraint": "Unrestrained",
+            "log10A": 5.238,
+            "B": -0.358
+        },
+        {
+            "Pmin_%SMYS": 20,
+            "Pmax_%SMYS": 50,
+            "Restraint": "Unrestrained",
+            "log10A": 4.745,
+            "B": -0.35
+        },
+        {
+            "Pmin_%SMYS": 20,
+            "Pmax_%SMYS": 60,
+            "Restraint": "Unrestrained",
+            "log10A": 4.368,
+            "B": -0.353
+        },
+        {
+            "Pmin_%SMYS": 20,
+            "Pmax_%SMYS": 70,
+            "Restraint": "Unrestrained",
+            "log10A": 4.076,
+            "B": -0.362
+        },
+        {
+            "Pmin_%SMYS": 20,
+            "Pmax_%SMYS": 80,
+            "Restraint": "Unrestrained",
+            "log10A": 3.806,
+            "B": -0.372
+        },
+        {
+            "Pmin_%SMYS": 30,
+            "Pmax_%SMYS": 40,
+            "Restraint": "Unrestrained",
+            "log10A": 6.19,
+            "B": -0.341
+        },
+        {
+            "Pmin_%SMYS": 30,
+            "Pmax_%SMYS": 50,
+            "Restraint": "Unrestrained",
+            "log10A": 5.302,
+            "B": -0.334
+        },
+        {
+            "Pmin_%SMYS": 30,
+            "Pmax_%SMYS": 60,
+            "Restraint": "Unrestrained",
+            "log10A": 4.786,
+            "B": -0.339
+        },
+        {
+            "Pmin_%SMYS": 30,
+            "Pmax_%SMYS": 70,
+            "Restraint": "Unrestrained",
+            "log10A": 4.391,
+            "B": -0.352
+        },
+        {
+            "Pmin_%SMYS": 30,
+            "Pmax_%SMYS": 80,
+            "Restraint": "Unrestrained",
+            "log10A": 4.079,
+            "B": -0.366
+        },
+        {
+            "Pmin_%SMYS": 40,
+            "Pmax_%SMYS": 50,
+            "Restraint": "Unrestrained",
+            "log10A": 6.248,
+            "B": -0.328
+        },
+        {
+            "Pmin_%SMYS": 40,
+            "Pmax_%SMYS": 60,
+            "Restraint": "Unrestrained",
+            "log10A": 5.343,
+            "B": -0.333
+        },
+        {
+            "Pmin_%SMYS": 40,
+            "Pmax_%SMYS": 70,
+            "Restraint": "Unrestrained",
+            "log10A": 4.807,
+            "B": -0.347
+        },
+        {
+            "Pmin_%SMYS": 40,
+            "Pmax_%SMYS": 80,
+            "Restraint": "Unrestrained",
+            "log10A": 4.395,
+            "B": -0.363
+        },
+        {
+            "Pmin_%SMYS": 50,
+            "Pmax_%SMYS": 60,
+            "Restraint": "Unrestrained",
+            "log10A": 6.279,
+            "B": -0.33
+        },
+        {
+            "Pmin_%SMYS": 50,
+            "Pmax_%SMYS": 70,
+            "Restraint": "Unrestrained",
+            "log10A": 5.364,
+            "B": -0.342
+        },
+        {
+            "Pmin_%SMYS": 50,
+            "Pmax_%SMYS": 80,
+            "Restraint": "Unrestrained",
+            "log10A": 4.803,
+            "B": -0.363
+        },
+        {
+            "Pmin_%SMYS": 60,
+            "Pmax_%SMYS": 70,
+            "Restraint": "Unrestrained",
+            "log10A": 6.3,
+            "B": -0.338
+        },
+        {
+            "Pmin_%SMYS": 60,
+            "Pmax_%SMYS": 80,
+            "Restraint": "Unrestrained",
+            "log10A": 5.36,
+            "B": -0.36
+        },
+        {
+            "Pmin_%SMYS": 70,
+            "Pmax_%SMYS": 80,
+            "Restraint": "Unrestrained",
+            "log10A": 6.289,
+            "B": -0.356
+        },
+        {
+            "Pmin_%SMYS": 10,
+            "Pmax_%SMYS": 20,
+            "Restraint": "Shallow Restrained",
+            "log10A": 6.342,
+            "B": -0.822
+        },
+        {
+            "Pmin_%SMYS": 10,
+            "Pmax_%SMYS": 30,
+            "Restraint": "Shallow Restrained",
+            "log10A": 6.149,
+            "B": -1.171
+        },
+        {
+            "Pmin_%SMYS": 10,
+            "Pmax_%SMYS": 40,
+            "Restraint": "Shallow Restrained",
+            "log10A": 5.914,
+            "B": -1.142
+        },
+        {
+            "Pmin_%SMYS": 10,
+            "Pmax_%SMYS": 50,
+            "Restraint": "Shallow Restrained",
+            "log10A": 5.708,
+            "B": -1.09
+        },
+        {
+            "Pmin_%SMYS": 10,
+            "Pmax_%SMYS": 60,
+            "Restraint": "Shallow Restrained",
+            "log10A": 5.512,
+            "B": -1.043
+        },
+        {
+            "Pmin_%SMYS": 10,
+            "Pmax_%SMYS": 70,
+            "Restraint": "Shallow Restrained",
+            "log10A": 5.325,
+            "B": -0.981
+        },
+        {
+            "Pmin_%SMYS": 10,
+            "Pmax_%SMYS": 80,
+            "Restraint": "Shallow Restrained",
+            "log10A": 5.147,
+            "B": -0.93
+        },
+        {
+            "Pmin_%SMYS": 20,
+            "Pmax_%SMYS": 30,
+            "Restraint": "Shallow Restrained",
+            "log10A": 6.738,
+            "B": -0.965
+        },
+        {
+            "Pmin_%SMYS": 20,
+            "Pmax_%SMYS": 40,
+            "Restraint": "Shallow Restrained",
+            "log10A": 6.249,
+            "B": -1.013
+        },
+        {
+            "Pmin_%SMYS": 20,
+            "Pmax_%SMYS": 50,
+            "Restraint": "Shallow Restrained",
+            "log10A": 5.902,
+            "B": -0.98
+        },
+        {
+            "Pmin_%SMYS": 20,
+            "Pmax_%SMYS": 60,
+            "Restraint": "Shallow Restrained",
+            "log10A": 5.633,
+            "B": -0.934
+        },
+        {
+            "Pmin_%SMYS": 20,
+            "Pmax_%SMYS": 70,
+            "Restraint": "Shallow Restrained",
+            "log10A": 5.408,
+            "B": -0.902
+        },
+        {
+            "Pmin_%SMYS": 20,
+            "Pmax_%SMYS": 80,
+            "Restraint": "Shallow Restrained",
+            "log10A": 5.217,
+            "B": -0.865
+        },
+        {
+            "Pmin_%SMYS": 30,
+            "Pmax_%SMYS": 40,
+            "Restraint": "Shallow Restrained",
+            "log10A": 6.862,
+            "B": -0.87
+        },
+        {
+            "Pmin_%SMYS": 30,
+            "Pmax_%SMYS": 50,
+            "Restraint": "Shallow Restrained",
+            "log10A": 6.24,
+            "B": -0.868
+        },
+        {
+            "Pmin_%SMYS": 30,
+            "Pmax_%SMYS": 60,
+            "Restraint": "Shallow Restrained",
+            "log10A": 5.831,
+            "B": -0.834
+        },
+        {
+            "Pmin_%SMYS": 30,
+            "Pmax_%SMYS": 70,
+            "Restraint": "Shallow Restrained",
+            "log10A": 5.536,
+            "B": -0.807
+        },
+        {
+            "Pmin_%SMYS": 30,
+            "Pmax_%SMYS": 80,
+            "Restraint": "Shallow Restrained",
+            "log10A": 5.303,
+            "B": -0.786
+        },
+        {
+            "Pmin_%SMYS": 40,
+            "Pmax_%SMYS": 50,
+            "Restraint": "Shallow Restrained",
+            "log10A": 6.901,
+            "B": -0.75
+        },
+        {
+            "Pmin_%SMYS": 40,
+            "Pmax_%SMYS": 60,
+            "Restraint": "Shallow Restrained",
+            "log10A": 6.2,
+            "B": -0.735
+        },
+        {
+            "Pmin_%SMYS": 40,
+            "Pmax_%SMYS": 70,
+            "Restraint": "Shallow Restrained",
+            "log10A": 5.778,
+            "B": -0.735
+        },
+        {
+            "Pmin_%SMYS": 40,
+            "Pmax_%SMYS": 80,
+            "Restraint": "Shallow Restrained",
+            "log10A": 5.492,
+            "B": -0.726
+        },
+        {
+            "Pmin_%SMYS": 50,
+            "Pmax_%SMYS": 60,
+            "Restraint": "Shallow Restrained",
+            "log10A": 6.965,
+            "B": -0.714
+        },
+        {
+            "Pmin_%SMYS": 50,
+            "Pmax_%SMYS": 70,
+            "Restraint": "Shallow Restrained",
+            "log10A": 6.251,
+            "B": -0.733
+        },
+        {
+            "Pmin_%SMYS": 50,
+            "Pmax_%SMYS": 80,
+            "Restraint": "Shallow Restrained",
+            "log10A": 5.839,
+            "B": -0.737
+        },
+        {
+            "Pmin_%SMYS": 60,
+            "Pmax_%SMYS": 70,
+            "Restraint": "Shallow Restrained",
+            "log10A": 7.034,
+            "B": -0.743
+        },
+        {
+            "Pmin_%SMYS": 60,
+            "Pmax_%SMYS": 80,
+            "Restraint": "Shallow Restrained",
+            "log10A": 6.329,
+            "B": -0.749
+        },
+        {
+            "Pmin_%SMYS": 70,
+            "Pmax_%SMYS": 80,
+            "Restraint": "Shallow Restrained",
+            "log10A": 7.113,
+            "B": -0.791
+        },
+        {
+            "Pmin_%SMYS": 10,
+            "Pmax_%SMYS": 20,
+            "Restraint": "Deep Restrained",
+            "log10A": 6.087,
+            "B": -0.773
+        },
+        {
+            "Pmin_%SMYS": 10,
+            "Pmax_%SMYS": 30,
+            "Restraint": "Deep Restrained",
+            "log10A": 5.285,
+            "B": -0.662
+        },
+        {
+            "Pmin_%SMYS": 10,
+            "Pmax_%SMYS": 40,
+            "Restraint": "Deep Restrained",
+            "log10A": 4.866,
+            "B": -0.585
+        },
+        {
+            "Pmin_%SMYS": 10,
+            "Pmax_%SMYS": 50,
+            "Restraint": "Deep Restrained",
+            "log10A": 4.578,
+            "B": -0.55
+        },
+        {
+            "Pmin_%SMYS": 10,
+            "Pmax_%SMYS": 60,
+            "Restraint": "Deep Restrained",
+            "log10A": 4.338,
+            "B": -0.543
+        },
+        {
+            "Pmin_%SMYS": 10,
+            "Pmax_%SMYS": 70,
+            "Restraint": "Deep Restrained",
+            "log10A": 4.105,
+            "B": -0.566
+        },
+        {
+            "Pmin_%SMYS": 10,
+            "Pmax_%SMYS": 80,
+            "Restraint": "Deep Restrained",
+            "log10A": 3.829,
+            "B": -0.616
+        },
+        {
+            "Pmin_%SMYS": 20,
+            "Pmax_%SMYS": 30,
+            "Restraint": "Deep Restrained",
+            "log10A": 6.181,
+            "B": -0.728
+        },
+        {
+            "Pmin_%SMYS": 20,
+            "Pmax_%SMYS": 40,
+            "Restraint": "Deep Restrained",
+            "log10A": 5.357,
+            "B": -0.653
+        },
+        {
+            "Pmin_%SMYS": 20,
+            "Pmax_%SMYS": 50,
+            "Restraint": "Deep Restrained",
+            "log10A": 4.893,
+            "B": -0.605
+        },
+        {
+            "Pmin_%SMYS": 20,
+            "Pmax_%SMYS": 60,
+            "Restraint": "Deep Restrained",
+            "log10A": 4.54,
+            "B": -0.583
+        },
+        {
+            "Pmin_%SMYS": 20,
+            "Pmax_%SMYS": 70,
+            "Restraint": "Deep Restrained",
+            "log10A": 4.246,
+            "B": -0.6
+        },
+        {
+            "Pmin_%SMYS": 20,
+            "Pmax_%SMYS": 80,
+            "Restraint": "Deep Restrained",
+            "log10A": 3.941,
+            "B": -0.651
+        },
+        {
+            "Pmin_%SMYS": 30,
+            "Pmax_%SMYS": 40,
+            "Restraint": "Deep Restrained",
+            "log10A": 6.25,
+            "B": -0.676
+        },
+        {
+            "Pmin_%SMYS": 30,
+            "Pmax_%SMYS": 50,
+            "Restraint": "Deep Restrained",
+            "log10A": 5.376,
+            "B": -0.633
+        },
+        {
+            "Pmin_%SMYS": 30,
+            "Pmax_%SMYS": 60,
+            "Restraint": "Deep Restrained",
+            "log10A": 4.859,
+            "B": -0.602
+        },
+        {
+            "Pmin_%SMYS": 30,
+            "Pmax_%SMYS": 70,
+            "Restraint": "Deep Restrained",
+            "log10A": 4.475,
+            "B": -0.623
+        },
+        {
+            "Pmin_%SMYS": 30,
+            "Pmax_%SMYS": 80,
+            "Restraint": "Deep Restrained",
+            "log10A": 4.134,
+            "B": -0.671
+        },
+        {
+            "Pmin_%SMYS": 40,
+            "Pmax_%SMYS": 50,
+            "Restraint": "Deep Restrained",
+            "log10A": 6.283,
+            "B": -0.632
+        },
+        {
+            "Pmin_%SMYS": 40,
+            "Pmax_%SMYS": 60,
+            "Restraint": "Deep Restrained",
+            "log10A": 5.371,
+            "B": -0.619
+        },
+        {
+            "Pmin_%SMYS": 40,
+            "Pmax_%SMYS": 70,
+            "Restraint": "Deep Restrained",
+            "log10A": 4.839,
+            "B": -0.631
+        },
+        {
+            "Pmin_%SMYS": 40,
+            "Pmax_%SMYS": 80,
+            "Restraint": "Deep Restrained",
+            "log10A": 4.424,
+            "B": -0.671
+        },
+        {
+            "Pmin_%SMYS": 50,
+            "Pmax_%SMYS": 60,
+            "Restraint": "Deep Restrained",
+            "log10A": 6.309,
+            "B": -0.62
+        },
+        {
+            "Pmin_%SMYS": 50,
+            "Pmax_%SMYS": 70,
+            "Restraint": "Deep Restrained",
+            "log10A": 5.393,
+            "B": -0.638
+        },
+        {
+            "Pmin_%SMYS": 50,
+            "Pmax_%SMYS": 80,
+            "Restraint": "Deep Restrained",
+            "log10A": 4.833,
+            "B": -0.669
+        },
+        {
+            "Pmin_%SMYS": 60,
+            "Pmax_%SMYS": 70,
+            "Restraint": "Deep Restrained",
+            "log10A": 6.351,
+            "B": -0.628
+        },
+        {
+            "Pmin_%SMYS": 60,
+            "Pmax_%SMYS": 80,
+            "Restraint": "Deep Restrained",
+            "log10A": 5.413,
+            "B": -0.659
+        },
+        {
+            "Pmin_%SMYS": 70,
+            "Pmax_%SMYS": 80,
+            "Restraint": "Deep Restrained",
+            "log10A": 6.377,
+            "B": -0.632
+        }
+    ],
+    "G.1_7": [
+        {
+            "TMP": 10,
+            "RILIP": 10,
+            "lambH": 1.0,
+            "lambL": 1.0
+        },
+        {
+            "TMP": 10,
+            "RILIP": 20,
+            "lambH": 1.0855,
+            "lambL": 1.1294
+        },
+        {
+            "TMP": 10,
+            "RILIP": 30,
+            "lambH": 1.1505,
+            "lambL": 1.264
+        },
+        {
+            "TMP": 10,
+            "RILIP": 40,
+            "lambH": 1.2063,
+            "lambL": 1.3498
+        },
+        {
+            "TMP": 10,
+            "RILIP": 50,
+            "lambH": 1.2774,
+            "lambL": 1.445
+        },
+        {
+            "TMP": 10,
+            "RILIP": 60,
+            "lambH": 1.3005,
+            "lambL": 1.5449
+        },
+        {
+            "TMP": 10,
+            "RILIP": 70,
+            "lambH": 1.3853,
+            "lambL": 1.586
+        },
+        {
+            "TMP": 20,
+            "RILIP": 10,
+            "lambH": 0.9208,
+            "lambL": 0.8836
+        },
+        {
+            "TMP": 20,
+            "RILIP": 20,
+            "lambH": 1.0,
+            "lambL": 1.0
+        },
+        {
+            "TMP": 20,
+            "RILIP": 30,
+            "lambH": 1.0611,
+            "lambL": 1.0926
+        },
+        {
+            "TMP": 20,
+            "RILIP": 40,
+            "lambH": 1.1062,
+            "lambL": 1.1765
+        },
+        {
+            "TMP": 20,
+            "RILIP": 50,
+            "lambH": 1.1767,
+            "lambL": 1.2476
+        },
+        {
+            "TMP": 20,
+            "RILIP": 60,
+            "lambH": 1.2173,
+            "lambL": 1.3023
+        },
+        {
+            "TMP": 20,
+            "RILIP": 70,
+            "lambH": 1.2447,
+            "lambL": 1.3744
+        },
+        {
+            "TMP": 30,
+            "RILIP": 10,
+            "lambH": 0.869,
+            "lambL": 0.8205
+        },
+        {
+            "TMP": 30,
+            "RILIP": 20,
+            "lambH": 0.9408,
+            "lambL": 0.9239
+        },
+        {
+            "TMP": 30,
+            "RILIP": 30,
+            "lambH": 1.0,
+            "lambL": 1.0
+        },
+        {
+            "TMP": 30,
+            "RILIP": 40,
+            "lambH": 1.0427,
+            "lambL": 1.0719
+        },
+        {
+            "TMP": 30,
+            "RILIP": 50,
+            "lambH": 1.0836,
+            "lambL": 1.1343
+        },
+        {
+            "TMP": 30,
+            "RILIP": 60,
+            "lambH": 1.1334,
+            "lambL": 1.1836
+        },
+        {
+            "TMP": 30,
+            "RILIP": 70,
+            "lambH": 1.1537,
+            "lambL": 1.2515
+        },
+        {
+            "TMP": 40,
+            "RILIP": 10,
+            "lambH": 0.8279,
+            "lambL": 0.7766
+        },
+        {
+            "TMP": 40,
+            "RILIP": 20,
+            "lambH": 0.8937,
+            "lambL": 0.8712
+        },
+        {
+            "TMP": 40,
+            "RILIP": 30,
+            "lambH": 0.9573,
+            "lambL": 0.9382
+        },
+        {
+            "TMP": 40,
+            "RILIP": 40,
+            "lambH": 1.0,
+            "lambL": 1.0
+        },
+        {
+            "TMP": 40,
+            "RILIP": 50,
+            "lambH": 1.0361,
+            "lambL": 1.0577
+        },
+        {
+            "TMP": 40,
+            "RILIP": 60,
+            "lambH": 1.0794,
+            "lambL": 1.1097
+        },
+        {
+            "TMP": 40,
+            "RILIP": 70,
+            "lambH": 1.1009,
+            "lambL": 1.1548
+        },
+        {
+            "TMP": 50,
+            "RILIP": 10,
+            "lambH": 0.7924,
+            "lambL": 0.7261
+        },
+        {
+            "TMP": 50,
+            "RILIP": 20,
+            "lambH": 0.8556,
+            "lambL": 0.829
+        },
+        {
+            "TMP": 50,
+            "RILIP": 30,
+            "lambH": 0.9282,
+            "lambL": 0.887
+        },
+        {
+            "TMP": 50,
+            "RILIP": 40,
+            "lambH": 0.9624,
+            "lambL": 0.9483
+        },
+        {
+            "TMP": 50,
+            "RILIP": 50,
+            "lambH": 1.0,
+            "lambL": 1.0
+        },
+        {
+            "TMP": 50,
+            "RILIP": 60,
+            "lambH": 1.0453,
+            "lambL": 1.0517
+        },
+        {
+            "TMP": 50,
+            "RILIP": 70,
+            "lambH": 1.0719,
+            "lambL": 1.0953
+        },
+        {
+            "TMP": 60,
+            "RILIP": 10,
+            "lambH": 0.7623,
+            "lambL": 0.6942
+        },
+        {
+            "TMP": 60,
+            "RILIP": 20,
+            "lambH": 0.8247,
+            "lambL": 0.7921
+        },
+        {
+            "TMP": 60,
+            "RILIP": 30,
+            "lambH": 0.897,
+            "lambL": 0.848
+        },
+        {
+            "TMP": 60,
+            "RILIP": 40,
+            "lambH": 0.9367,
+            "lambL": 0.9053
+        },
+        {
+            "TMP": 60,
+            "RILIP": 50,
+            "lambH": 0.9665,
+            "lambL": 0.9527
+        },
+        {
+            "TMP": 60,
+            "RILIP": 60,
+            "lambH": 1.0,
+            "lambL": 1.0
+        },
+        {
+            "TMP": 60,
+            "RILIP": 70,
+            "lambH": 1.024,
+            "lambL": 1.0394
+        },
+        {
+            "TMP": 70,
+            "RILIP": 10,
+            "lambH": 0.7375,
+            "lambL": 0.6678
+        },
+        {
+            "TMP": 70,
+            "RILIP": 20,
+            "lambH": 0.794,
+            "lambL": 0.7511
+        },
+        {
+            "TMP": 70,
+            "RILIP": 30,
+            "lambH": 0.8682,
+            "lambL": 0.8114
+        },
+        {
+            "TMP": 70,
+            "RILIP": 40,
+            "lambH": 0.9083,
+            "lambL": 0.8665
+        },
+        {
+            "TMP": 70,
+            "RILIP": 50,
+            "lambH": 0.9397,
+            "lambL": 0.9125
+        },
+        {
+            "TMP": 70,
+            "RILIP": 60,
+            "lambH": 0.9702,
+            "lambL": 0.9521
+        },
+        {
+            "TMP": 70,
+            "RILIP": 70,
+            "lambH": 1.0,
+            "lambL": 1.0
+        }
+    ],
+    "D.1_6": [
+        {
+            "Level": 0,
+            "Interaction": "Plain",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Plain",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Plain",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Plain",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Plain",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Plain",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Plain",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Plain",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Plain",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Plain",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Plain",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Plain",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Plain",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Plain",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Plain",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Plain",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.3
+        },
+        {
+            "Level": 0,
+            "Interaction": "Plain",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Plain",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.03
+        },
+        {
+            "Level": 0,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Weld",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Weld",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Weld",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Weld",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Weld",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Weld",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Weld",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Weld",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Weld",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Weld",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Weld",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Weld",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Weld",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Weld",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Weld",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Weld",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Weld",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0,
+            "Interaction": "Weld",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Plain",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.85
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Plain",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.33
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Plain",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.05
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Plain",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.77
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Plain",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.99
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Plain",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.57
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Plain",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 3.7
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Plain",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.65
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Plain",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.09
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Plain",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 4.62
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Plain",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 3.32
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Plain",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.61
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Plain",
+            "Safety_Factor": 6,
+            "Certainty": 0.9,
+            "Scale_Factor": 5.55
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Plain",
+            "Safety_Factor": 6,
+            "Certainty": 0.8,
+            "Scale_Factor": 3.98
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Plain",
+            "Safety_Factor": 6,
+            "Certainty": 0.7,
+            "Scale_Factor": 3.14
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Plain",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 9.25
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Plain",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 6.64
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Plain",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 5.23
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Plain",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 13.87
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Plain",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 9.96
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Plain",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 7.84
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.08
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.44
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.13
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.79
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.41
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.19
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 6,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.15
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 6,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.69
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 6,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.42
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 3.59
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.82
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.37
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 5.38
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 4.23
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 3.56
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Weld",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Weld",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Weld",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Weld",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Weld",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Weld",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Weld",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Weld",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Weld",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Weld",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Weld",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Weld",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Weld",
+            "Safety_Factor": 6,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Weld",
+            "Safety_Factor": 6,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Weld",
+            "Safety_Factor": 6,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Weld",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.13
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Weld",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Weld",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Weld",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.7
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Weld",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.23
+        },
+        {
+            "Level": 0.5,
+            "Interaction": "Weld",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Plain",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.4
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Plain",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.77
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Plain",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.4
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Plain",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 3.6
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Plain",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.65
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Plain",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.1
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Plain",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 4.8
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Plain",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 3.53
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Plain",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.8
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Plain",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 6.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Plain",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 4.42
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Plain",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 3.5
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Plain",
+            "Safety_Factor": 6,
+            "Certainty": 0.9,
+            "Scale_Factor": 7.2
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Plain",
+            "Safety_Factor": 6,
+            "Certainty": 0.8,
+            "Scale_Factor": 5.3
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Plain",
+            "Safety_Factor": 6,
+            "Certainty": 0.7,
+            "Scale_Factor": 4.2
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Plain",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 12.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Plain",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 8.83
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Plain",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 6.99
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Plain",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 18.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Plain",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 13.25
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Plain",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 10.49
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.37
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.11
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.82
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.48
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.28
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.28
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.85
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.6
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 6,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.74
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 6,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.23
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 6,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.92
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 4.56
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 3.71
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 3.2
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 6.84
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 5.56
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 4.79
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Weld",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Weld",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Weld",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Weld",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Weld",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Weld",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Weld",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Weld",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Weld",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Weld",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Weld",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Weld",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Weld",
+            "Safety_Factor": 6,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Weld",
+            "Safety_Factor": 6,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Weld",
+            "Safety_Factor": 6,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Weld",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 3.57
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Weld",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 3.0
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Weld",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.4
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Weld",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.05
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Weld",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.53
+        },
+        {
+            "Level": "0.5+",
+            "Interaction": "Weld",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.24
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Plain",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.13
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Plain",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 3.19
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Plain",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 4.26
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Plain",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 5.32
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Plain",
+            "Safety_Factor": 6,
+            "Certainty": 0.9,
+            "Scale_Factor": 6.39
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Plain",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 10.64
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Plain",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 15.96
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Plain",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.57
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Plain",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.35
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Plain",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 3.14
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Plain",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 3.93
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Plain",
+            "Safety_Factor": 6,
+            "Certainty": 0.8,
+            "Scale_Factor": 4.71
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Plain",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 7.85
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Plain",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 11.78
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Plain",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.26
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Plain",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.89
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Plain",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.52
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Plain",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 3.16
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Plain",
+            "Safety_Factor": 6,
+            "Certainty": 0.7,
+            "Scale_Factor": 3.79
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Plain",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 6.31
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Plain",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 9.47
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.19
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.59
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.08
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.32
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 6,
+            "Certainty": 0.9,
+            "Scale_Factor": 3.07
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 6.44
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 9.66
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.42
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.98
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.36
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 6,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.83
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 4.72
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 7.08
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.13
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.51
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.89
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 6,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.26
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 3.77
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 5.66
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Weld",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Weld",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Weld",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Weld",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Weld",
+            "Safety_Factor": 6,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Weld",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.19
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Weld",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.79
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Weld",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Weld",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Weld",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Weld",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Weld",
+            "Safety_Factor": 6,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Weld",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Weld",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.32
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Weld",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Weld",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Weld",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Weld",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Weld",
+            "Safety_Factor": 6,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Weld",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 0.75,
+            "Interaction": "Weld",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.06
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Plain",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.43
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Plain",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 3.72
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Plain",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 4.95
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Plain",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 6.19
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Plain",
+            "Safety_Factor": 6,
+            "Certainty": 0.9,
+            "Scale_Factor": 7.43
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Plain",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 12.39
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Plain",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 18.58
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Plain",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.78
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Plain",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.67
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Plain",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 3.55
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Plain",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 4.44
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Plain",
+            "Safety_Factor": 6,
+            "Certainty": 0.8,
+            "Scale_Factor": 5.33
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Plain",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 8.89
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Plain",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 13.33
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Plain",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.42
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Plain",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.12
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Plain",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.83
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Plain",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 3.54
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Plain",
+            "Safety_Factor": 6,
+            "Certainty": 0.7,
+            "Scale_Factor": 4.25
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Plain",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 7.08
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Plain",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 10.62
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.33
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.07
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.76
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 3.46
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 6,
+            "Certainty": 0.9,
+            "Scale_Factor": 4.15
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 6.91
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 10.37
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.08
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.55
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.07
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.58
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 6,
+            "Certainty": 0.8,
+            "Scale_Factor": 3.1
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 5.47
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 7.75
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.25
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.68
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.1
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 6,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.51
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 4.19
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Corrosion",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 6.29
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Weld",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Weld",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Weld",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Weld",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Weld",
+            "Safety_Factor": 6,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Weld",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.42
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Weld",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.12
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Weld",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Weld",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Weld",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Weld",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Weld",
+            "Safety_Factor": 6,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Weld",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.05
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Weld",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.49
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Weld",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Weld",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Weld",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Weld",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Weld",
+            "Safety_Factor": 6,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Weld",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": "0.75+",
+            "Interaction": "Weld",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.03
+        },
+        {
+            "Level": 2,
+            "Interaction": "Plain",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.87
+        },
+        {
+            "Level": 2,
+            "Interaction": "Plain",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.81
+        },
+        {
+            "Level": 2,
+            "Interaction": "Plain",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 3.75
+        },
+        {
+            "Level": 2,
+            "Interaction": "Plain",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 4.68
+        },
+        {
+            "Level": 2,
+            "Interaction": "Plain",
+            "Safety_Factor": 6,
+            "Certainty": 0.9,
+            "Scale_Factor": 5.62
+        },
+        {
+            "Level": 2,
+            "Interaction": "Plain",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 9.37
+        },
+        {
+            "Level": 2,
+            "Interaction": "Plain",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 14.05
+        },
+        {
+            "Level": 2,
+            "Interaction": "Plain",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.96
+        },
+        {
+            "Level": 2,
+            "Interaction": "Plain",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.04
+        },
+        {
+            "Level": 2,
+            "Interaction": "Plain",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.73
+        },
+        {
+            "Level": 2,
+            "Interaction": "Plain",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 3.41
+        },
+        {
+            "Level": 2,
+            "Interaction": "Plain",
+            "Safety_Factor": 6,
+            "Certainty": 0.8,
+            "Scale_Factor": 4.09
+        },
+        {
+            "Level": 2,
+            "Interaction": "Plain",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 6.81
+        },
+        {
+            "Level": 2,
+            "Interaction": "Plain",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 10.22
+        },
+        {
+            "Level": 2,
+            "Interaction": "Plain",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.62
+        },
+        {
+            "Level": 2,
+            "Interaction": "Plain",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.62
+        },
+        {
+            "Level": 2,
+            "Interaction": "Plain",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.17
+        },
+        {
+            "Level": 2,
+            "Interaction": "Plain",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.71
+        },
+        {
+            "Level": 2,
+            "Interaction": "Plain",
+            "Safety_Factor": 6,
+            "Certainty": 0.7,
+            "Scale_Factor": 3.25
+        },
+        {
+            "Level": 2,
+            "Interaction": "Plain",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 5.42
+        },
+        {
+            "Level": 2,
+            "Interaction": "Plain",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 8.12
+        },
+        {
+            "Level": 2,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.33
+        },
+        {
+            "Level": 2,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.99
+        },
+        {
+            "Level": 2,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.65
+        },
+        {
+            "Level": 2,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 3.32
+        },
+        {
+            "Level": 2,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 6,
+            "Certainty": 0.9,
+            "Scale_Factor": 3.99
+        },
+        {
+            "Level": 2,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 6.66
+        },
+        {
+            "Level": 2,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 9.97
+        },
+        {
+            "Level": 2,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 2,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.48
+        },
+        {
+            "Level": 2,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.98
+        },
+        {
+            "Level": 2,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.47
+        },
+        {
+            "Level": 2,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 6,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.97
+        },
+        {
+            "Level": 2,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 4.95
+        },
+        {
+            "Level": 2,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 7.24
+        },
+        {
+            "Level": 2,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 2,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.2
+        },
+        {
+            "Level": 2,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.6
+        },
+        {
+            "Level": 2,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.0
+        },
+        {
+            "Level": 2,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 6,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.4
+        },
+        {
+            "Level": 2,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 4.0
+        },
+        {
+            "Level": 2,
+            "Interaction": "Corrosion",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 6.0
+        },
+        {
+            "Level": 2,
+            "Interaction": "Weld",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 2,
+            "Interaction": "Weld",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 2,
+            "Interaction": "Weld",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 2,
+            "Interaction": "Weld",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 2,
+            "Interaction": "Weld",
+            "Safety_Factor": 6,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 2,
+            "Interaction": "Weld",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.38
+        },
+        {
+            "Level": 2,
+            "Interaction": "Weld",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.07
+        },
+        {
+            "Level": 2,
+            "Interaction": "Weld",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 2,
+            "Interaction": "Weld",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 2,
+            "Interaction": "Weld",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 2,
+            "Interaction": "Weld",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 2,
+            "Interaction": "Weld",
+            "Safety_Factor": 6,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 2,
+            "Interaction": "Weld",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 2,
+            "Interaction": "Weld",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.53
+        },
+        {
+            "Level": 2,
+            "Interaction": "Weld",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 2,
+            "Interaction": "Weld",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 2,
+            "Interaction": "Weld",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 2,
+            "Interaction": "Weld",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 2,
+            "Interaction": "Weld",
+            "Safety_Factor": 6,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 2,
+            "Interaction": "Weld",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Level": 2,
+            "Interaction": "Weld",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.03
+        }
+    ],
+    "9_10": [
+        {
+            "TMP": 10,
+            "RILIP": 10,
+            "lamb1": 1.0,
+            "lamb2": 1.0
+        },
+        {
+            "TMP": 20,
+            "RILIP": 10,
+            "lamb1": 0.926,
+            "lamb2": 0.972
+        },
+        {
+            "TMP": 30,
+            "RILIP": 10,
+            "lamb1": 0.888,
+            "lamb2": 0.951
+        },
+        {
+            "TMP": 40,
+            "RILIP": 10,
+            "lamb1": 0.85,
+            "lamb2": 0.935
+        },
+        {
+            "TMP": 50,
+            "RILIP": 10,
+            "lamb1": 0.831,
+            "lamb2": 0.923
+        },
+        {
+            "TMP": 60,
+            "RILIP": 10,
+            "lamb1": 0.818,
+            "lamb2": 0.913
+        },
+        {
+            "TMP": 70,
+            "RILIP": 10,
+            "lamb1": 0.8,
+            "lamb2": 0.904
+        },
+        {
+            "TMP": 10,
+            "RILIP": 20,
+            "lamb1": 1.08,
+            "lamb2": 1.029
+        },
+        {
+            "TMP": 20,
+            "RILIP": 20,
+            "lamb1": 1.0,
+            "lamb2": 1.0
+        },
+        {
+            "TMP": 30,
+            "RILIP": 20,
+            "lamb1": 0.959,
+            "lamb2": 0.979
+        },
+        {
+            "TMP": 40,
+            "RILIP": 20,
+            "lamb1": 0.919,
+            "lamb2": 0.963
+        },
+        {
+            "TMP": 50,
+            "RILIP": 20,
+            "lamb1": 0.899,
+            "lamb2": 0.95
+        },
+        {
+            "TMP": 60,
+            "RILIP": 20,
+            "lamb1": 0.886,
+            "lamb2": 0.94
+        },
+        {
+            "TMP": 70,
+            "RILIP": 20,
+            "lamb1": 0.867,
+            "lamb2": 0.931
+        },
+        {
+            "TMP": 10,
+            "RILIP": 30,
+            "lamb1": 1.127,
+            "lamb2": 1.051
+        },
+        {
+            "TMP": 20,
+            "RILIP": 30,
+            "lamb1": 1.043,
+            "lamb2": 1.021
+        },
+        {
+            "TMP": 30,
+            "RILIP": 30,
+            "lamb1": 1.0,
+            "lamb2": 1.0
+        },
+        {
+            "TMP": 40,
+            "RILIP": 30,
+            "lamb1": 0.959,
+            "lamb2": 0.984
+        },
+        {
+            "TMP": 50,
+            "RILIP": 30,
+            "lamb1": 0.938,
+            "lamb2": 0.971
+        },
+        {
+            "TMP": 60,
+            "RILIP": 30,
+            "lamb1": 0.925,
+            "lamb2": 0.961
+        },
+        {
+            "TMP": 70,
+            "RILIP": 30,
+            "lamb1": 0.905,
+            "lamb2": 0.952
+        },
+        {
+            "TMP": 10,
+            "RILIP": 40,
+            "lamb1": 1.177,
+            "lamb2": 1.07
+        },
+        {
+            "TMP": 20,
+            "RILIP": 40,
+            "lamb1": 1.088,
+            "lamb2": 1.039
+        },
+        {
+            "TMP": 30,
+            "RILIP": 40,
+            "lamb1": 1.043,
+            "lamb2": 1.017
+        },
+        {
+            "TMP": 40,
+            "RILIP": 40,
+            "lamb1": 1.0,
+            "lamb2": 1.0
+        },
+        {
+            "TMP": 50,
+            "RILIP": 40,
+            "lamb1": 0.979,
+            "lamb2": 0.987
+        },
+        {
+            "TMP": 60,
+            "RILIP": 40,
+            "lamb1": 0.965,
+            "lamb2": 0.977
+        },
+        {
+            "TMP": 70,
+            "RILIP": 40,
+            "lamb1": 0.944,
+            "lamb2": 0.968
+        },
+        {
+            "TMP": 10,
+            "RILIP": 50,
+            "lamb1": 1.204,
+            "lamb2": 1.084
+        },
+        {
+            "TMP": 20,
+            "RILIP": 50,
+            "lamb1": 1.112,
+            "lamb2": 1.052
+        },
+        {
+            "TMP": 30,
+            "RILIP": 50,
+            "lamb1": 1.066,
+            "lamb2": 1.03
+        },
+        {
+            "TMP": 40,
+            "RILIP": 50,
+            "lamb1": 1.022,
+            "lamb2": 1.013
+        },
+        {
+            "TMP": 50,
+            "RILIP": 50,
+            "lamb1": 1.0,
+            "lamb2": 1.0
+        },
+        {
+            "TMP": 60,
+            "RILIP": 50,
+            "lamb1": 0.986,
+            "lamb2": 0.99
+        },
+        {
+            "TMP": 70,
+            "RILIP": 50,
+            "lamb1": 0.965,
+            "lamb2": 0.981
+        },
+        {
+            "TMP": 10,
+            "RILIP": 60,
+            "lamb1": 1.222,
+            "lamb2": 1.096
+        },
+        {
+            "TMP": 20,
+            "RILIP": 60,
+            "lamb1": 1.129,
+            "lamb2": 1.064
+        },
+        {
+            "TMP": 30,
+            "RILIP": 60,
+            "lamb1": 1.081,
+            "lamb2": 1.041
+        },
+        {
+            "TMP": 40,
+            "RILIP": 60,
+            "lamb1": 1.037,
+            "lamb2": 1.024
+        },
+        {
+            "TMP": 50,
+            "RILIP": 60,
+            "lamb1": 1.014,
+            "lamb2": 1.01
+        },
+        {
+            "TMP": 60,
+            "RILIP": 60,
+            "lamb1": 1.0,
+            "lamb2": 1.0
+        },
+        {
+            "TMP": 70,
+            "RILIP": 60,
+            "lamb1": 0.979,
+            "lamb2": 0.991
+        },
+        {
+            "TMP": 10,
+            "RILIP": 70,
+            "lamb1": 1.25,
+            "lamb2": 1.107
+        },
+        {
+            "TMP": 20,
+            "RILIP": 70,
+            "lamb1": 1.154,
+            "lamb2": 1.074
+        },
+        {
+            "TMP": 30,
+            "RILIP": 70,
+            "lamb1": 1.105,
+            "lamb2": 1.051
+        },
+        {
+            "TMP": 40,
+            "RILIP": 70,
+            "lamb1": 1.059,
+            "lamb2": 1.033
+        },
+        {
+            "TMP": 50,
+            "RILIP": 70,
+            "lamb1": 1.036,
+            "lamb2": 1.02
+        },
+        {
+            "TMP": 60,
+            "RILIP": 70,
+            "lamb1": 1.022,
+            "lamb2": 1.009
+        },
+        {
+            "TMP": 70,
+            "RILIP": 70,
+            "lamb1": 1.0,
+            "lamb2": 1.0
+        }
+    ],
+    "29": [
+        {
+            "AR_LB": 0.0,
+            "AR_UB": 0.5,
+            "b1r": 5.6117,
+            "b2r": -1.7816,
+            "b3r": -0.26582,
+            "b4r": 0.31458,
+            "b5r": -1.9506,
+            "b6r": -0.0075292,
+            "b7r": -0.042931,
+            "b8r": 0.041171,
+            "b9r": 0.047098,
+            "b10r": 0.010089,
+            "b11r": 9.7614,
+            "b12r": -1.078,
+            "b13r": -8.3762,
+            "b14r": -10.353,
+            "b15r": 0.62503,
+            "b16r": 0.12704,
+            "b17r": -0.0931,
+            "b18r": -0.022214,
+            "b19r": -0.014429,
+            "b20r": -0.0010242,
+            "b21r": 7.4393,
+            "b22r": -1.6981,
+            "b23r": -1.6478,
+            "b24r": -6.8097,
+            "b25r": 0.86651,
+            "b26r": -0.060627,
+            "b27r": 1.0143,
+            "b28r": -0.15204,
+            "b29r": 0.34401,
+            "b30r": -0.021131,
+            "b31r": 0.10928,
+            "b32r": -0.10294,
+            "b33r": 0.10828,
+            "b34r": 0.79903,
+            "b35r": -0.39882,
+            "b36r": -1.4152,
+            "b37r": 0.73982,
+            "b38r": 1.0441,
+            "b39r": -1.5992,
+            "b40r": -0.097859,
+            "b41r": -0.03464,
+            "b42r": -0.013749,
+            "b43r": 0.31372,
+            "b44r": -0.06784,
+            "b45r": 0.077536,
+            "b46r": 0.21882,
+            "b47r": 0.97118,
+            "b48r": 0.51519,
+            "b49r": -2.8312,
+            "b50r": 1.657
+        },
+        {
+            "AR_LB": 0.5,
+            "AR_UB": 0.8,
+            "b1r": 1.0051,
+            "b2r": 10.055,
+            "b3r": 2.131,
+            "b4r": 4.271,
+            "b5r": -5.796,
+            "b6r": -0.0014684,
+            "b7r": 0.0061659,
+            "b8r": 1.7987e-05,
+            "b9r": -0.00017666,
+            "b10r": 8.2656e-05,
+            "b11r": 43.957,
+            "b12r": -7.2357,
+            "b13r": -36.887,
+            "b14r": -92.424,
+            "b15r": 8.4534,
+            "b16r": 0.31363,
+            "b17r": -0.17177,
+            "b18r": -0.39446,
+            "b19r": 0.12406,
+            "b20r": 0.16174,
+            "b21r": 1.6901,
+            "b22r": 0.87287,
+            "b23r": 1.5697,
+            "b24r": -1.2627,
+            "b25r": 2.5223,
+            "b26r": 0.60139,
+            "b27r": -0.1354,
+            "b28r": -0.046954,
+            "b29r": -0.17364,
+            "b30r": -0.20076,
+            "b31r": -11.067,
+            "b32r": 6.8696,
+            "b33r": 10.356,
+            "b34r": 32.029,
+            "b35r": -23.07,
+            "b36r": 2.6213,
+            "b37r": 0.54298,
+            "b38r": -0.066133,
+            "b39r": -0.82298,
+            "b40r": 0.40295,
+            "b41r": -0.068494,
+            "b42r": 0.020831,
+            "b43r": 0.14266,
+            "b44r": 0.11341,
+            "b45r": -0.037792,
+            "b46r": -3.3106,
+            "b47r": 0.73499,
+            "b48r": 6.0334,
+            "b49r": 5.6836,
+            "b50r": -0.55424
+        },
+        {
+            "AR_LB": 0.8,
+            "AR_UB": 1.1,
+            "b1r": 7.2418,
+            "b2r": -0.036736,
+            "b3r": -0.90413,
+            "b4r": 2.593,
+            "b5r": -2.0962,
+            "b6r": -0.0035084,
+            "b7r": 0.0018804,
+            "b8r": -0.0017472,
+            "b9r": 0.0036696,
+            "b10r": -0.001809,
+            "b11r": 125.59,
+            "b12r": -47.535,
+            "b13r": -33.647,
+            "b14r": 53.594,
+            "b15r": -62.875,
+            "b16r": -0.0016246,
+            "b17r": 0.0008343,
+            "b18r": 0.00019543,
+            "b19r": 0.00059777,
+            "b20r": 0.00028873,
+            "b21r": -0.63377,
+            "b22r": 111.35,
+            "b23r": -29.578,
+            "b24r": -146.55,
+            "b25r": -26.902,
+            "b26r": -0.070569,
+            "b27r": 0.38334,
+            "b28r": 0.02131,
+            "b29r": -0.096696,
+            "b30r": 0.058869,
+            "b31r": -0.016823,
+            "b32r": 0.01138,
+            "b33r": 0.019986,
+            "b34r": -0.056688,
+            "b35r": 0.014259,
+            "b36r": -0.19866,
+            "b37r": -3.7645,
+            "b38r": -0.073262,
+            "b39r": 0.61616,
+            "b40r": -0.01399,
+            "b41r": -0.071687,
+            "b42r": -0.28161,
+            "b43r": -0.016375,
+            "b44r": 0.10279,
+            "b45r": -0.01411,
+            "b46r": 2.0589,
+            "b47r": 1.7788,
+            "b48r": 0.28012,
+            "b49r": -1.238,
+            "b50r": 0.41305
+        },
+        {
+            "AR_LB": 1.1,
+            "AR_UB": Infinity,
+            "b1r": -1.2993,
+            "b2r": -0.98324,
+            "b3r": 0.33019,
+            "b4r": 8.3924,
+            "b5r": 2.046,
+            "b6r": 0.055252,
+            "b7r": -0.035073,
+            "b8r": -0.0045579,
+            "b9r": -0.008953,
+            "b10r": -0.004606,
+            "b11r": 6.2157,
+            "b12r": 8.7375,
+            "b13r": -5.4056,
+            "b14r": -3.8559,
+            "b15r": -5.582,
+            "b16r": -0.13902,
+            "b17r": 0.013817,
+            "b18r": 0.045645,
+            "b19r": 0.027695,
+            "b20r": 0.091019,
+            "b21r": -1.8034,
+            "b22r": -4.9697,
+            "b23r": -4.1408,
+            "b24r": 10.774,
+            "b25r": -3.08,
+            "b26r": 0.90999,
+            "b27r": 0.28461,
+            "b28r": 0.049588,
+            "b29r": -0.7822,
+            "b30r": -0.26643,
+            "b31r": -0.45392,
+            "b32r": 1.0854,
+            "b33r": -0.093811,
+            "b34r": 0.10524,
+            "b35r": 0.080886,
+            "b36r": 0.63609,
+            "b37r": 2.5091,
+            "b38r": 0.17659,
+            "b39r": -0.95975,
+            "b40r": 0.10406,
+            "b41r": 0.32625,
+            "b42r": -0.57329,
+            "b43r": 0.0053343,
+            "b44r": 0.15192,
+            "b45r": 0.18344,
+            "b46r": -1.1136,
+            "b47r": -1.2749,
+            "b48r": -0.51249,
+            "b49r": -0.19005,
+            "b50r": 0.727
+        }
+    ],
+    "30": [
+        {
+            "AR_LB": 0.0,
+            "AR_UB": 0.8,
+            "b1u": -0.045572,
+            "b2u": 1.3505,
+            "b3u": 0.10565,
+            "b4u": 1.3544,
+            "b5u": 0.01266,
+            "b6u": -0.018187,
+            "b7u": -0.034483,
+            "b8u": 0.052633,
+            "b9u": -8.7668,
+            "b10u": 5.5059,
+            "b11u": -1.1159,
+            "b12u": 10.202,
+            "b13u": 0.28849,
+            "b14u": 0.062285,
+            "b15u": -0.23368,
+            "b16u": -0.1192,
+            "b17u": 1.4746,
+            "b18u": -0.54969,
+            "b19u": 1.4152,
+            "b20u": 1.2021,
+            "b21u": 1.4254,
+            "b22u": -0.61642,
+            "b23u": 0.06504,
+            "b24u": -0.51824,
+            "b25u": 1.1787,
+            "b26u": -0.21423,
+            "b27u": -0.36827,
+            "b28u": -0.92911,
+            "b29u": 1.008,
+            "b30u": -0.67267,
+            "b31u": 0.1489,
+            "b32u": -0.24452,
+            "b33u": 0.25754,
+            "b34u": -0.33863,
+            "b35u": 0.041769,
+            "b36u": 0.034698,
+            "b37u": -2.01,
+            "b38u": 0.69033,
+            "b39u": 0.54886,
+            "b40u": 3.4596
+        },
+        {
+            "AR_LB": 0.8,
+            "AR_UB": 1.2,
+            "b1u": 0.83357,
+            "b2u": -0.88282,
+            "b3u": 0.18202,
+            "b4u": -0.22022,
+            "b5u": -0.029574,
+            "b6u": 0.0095012,
+            "b7u": -0.0073959,
+            "b8u": 0.0048982,
+            "b9u": -1.379,
+            "b10u": -10.116,
+            "b11u": -2.2109,
+            "b12u": -2.3775,
+            "b13u": 0.14679,
+            "b14u": 0.01001,
+            "b15u": 0.1048,
+            "b16u": -0.12928,
+            "b17u": 3.6094,
+            "b18u": -1.4848,
+            "b19u": -3.4093,
+            "b20u": 5.2976,
+            "b21u": 0.92825,
+            "b22u": -0.23328,
+            "b23u": -0.13719,
+            "b24u": -0.36563,
+            "b25u": -0.27532,
+            "b26u": 0.13183,
+            "b27u": 0.011945,
+            "b28u": 0.21056,
+            "b29u": 1.4858,
+            "b30u": -1.697,
+            "b31u": 0.21374,
+            "b32u": -0.046319,
+            "b33u": 0.087115,
+            "b34u": -0.005505,
+            "b35u": 0.08789,
+            "b36u": -0.17488,
+            "b37u": -1.8549,
+            "b38u": -1.8489,
+            "b39u": 1.2625,
+            "b40u": 2.8205
+        },
+        {
+            "AR_LB": 1.2,
+            "AR_UB": Infinity,
+            "b1u": -0.50859,
+            "b2u": -0.11485,
+            "b3u": -2.4878,
+            "b4u": 5.3221,
+            "b5u": -0.030961,
+            "b6u": 0.004344,
+            "b7u": -0.028375,
+            "b8u": 0.039205,
+            "b9u": -10.908,
+            "b10u": -2.155,
+            "b11u": 1.7896,
+            "b12u": 1.7145,
+            "b13u": 0.78232,
+            "b14u": -0.24879,
+            "b15u": -0.054387,
+            "b16u": -0.46699,
+            "b17u": 0.319,
+            "b18u": -0.50179,
+            "b19u": 0.26789,
+            "b20u": 1.7788,
+            "b21u": 0.62041,
+            "b22u": -0.035845,
+            "b23u": -0.074572,
+            "b24u": -0.12256,
+            "b25u": 0.10795,
+            "b26u": 0.025765,
+            "b27u": -0.04652,
+            "b28u": -0.13604,
+            "b29u": -1.3233,
+            "b30u": -0.22437,
+            "b31u": -1.4817,
+            "b32u": 3.016,
+            "b33u": 0.17669,
+            "b34u": -0.10569,
+            "b35u": 0.088858,
+            "b36u": -0.17754,
+            "b37u": -1.1393,
+            "b38u": -0.6427,
+            "b39u": 0.44904,
+            "b40u": 1.4199
+        }
+    ],
+    "15_28": [
+        {
+            "Table": 15,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.87
+        },
+        {
+            "Table": 15,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 4.31
+        },
+        {
+            "Table": 15,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 5.74
+        },
+        {
+            "Table": 15,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 7.18
+        },
+        {
+            "Table": 15,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 14.35
+        },
+        {
+            "Table": 15,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 21.53
+        },
+        {
+            "Table": 15,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.91
+        },
+        {
+            "Table": 15,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.86
+        },
+        {
+            "Table": 15,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 3.82
+        },
+        {
+            "Table": 15,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 4.77
+        },
+        {
+            "Table": 15,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 9.55
+        },
+        {
+            "Table": 15,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 14.32
+        },
+        {
+            "Table": 15,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.42
+        },
+        {
+            "Table": 15,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.14
+        },
+        {
+            "Table": 15,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.85
+        },
+        {
+            "Table": 15,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 3.56
+        },
+        {
+            "Table": 15,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 7.12
+        },
+        {
+            "Table": 15,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 10.68
+        },
+        {
+            "Table": 16,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.33
+        },
+        {
+            "Table": 16,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.0
+        },
+        {
+            "Table": 16,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.67
+        },
+        {
+            "Table": 16,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 3.33
+        },
+        {
+            "Table": 16,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 6.66
+        },
+        {
+            "Table": 16,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 10.0
+        },
+        {
+            "Table": 16,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.05
+        },
+        {
+            "Table": 16,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.57
+        },
+        {
+            "Table": 16,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.1
+        },
+        {
+            "Table": 16,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.62
+        },
+        {
+            "Table": 16,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 5.25
+        },
+        {
+            "Table": 16,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 7.87
+        },
+        {
+            "Table": 16,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 16,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.33
+        },
+        {
+            "Table": 16,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.77
+        },
+        {
+            "Table": 16,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.21
+        },
+        {
+            "Table": 16,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 4.42
+        },
+        {
+            "Table": 16,
+            "Interaction": "Plain",
+            "OD_ID": NaN,
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 6.63
+        },
+        {
+            "Table": 17,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.04
+        },
+        {
+            "Table": 17,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 3.05
+        },
+        {
+            "Table": 17,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 4.07
+        },
+        {
+            "Table": 17,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 5.09
+        },
+        {
+            "Table": 17,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 10.18
+        },
+        {
+            "Table": 17,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 15.27
+        },
+        {
+            "Table": 17,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 17,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.08
+        },
+        {
+            "Table": 17,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.77
+        },
+        {
+            "Table": 17,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 3.47
+        },
+        {
+            "Table": 17,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 6.93
+        },
+        {
+            "Table": 17,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 10.4
+        },
+        {
+            "Table": 17,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 17,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.58
+        },
+        {
+            "Table": 17,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.1
+        },
+        {
+            "Table": 17,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.63
+        },
+        {
+            "Table": 17,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 5.26
+        },
+        {
+            "Table": 17,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 7.88
+        },
+        {
+            "Table": 18,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.64
+        },
+        {
+            "Table": 18,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 3.96
+        },
+        {
+            "Table": 18,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 5.28
+        },
+        {
+            "Table": 18,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 6.6
+        },
+        {
+            "Table": 18,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 13.21
+        },
+        {
+            "Table": 18,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 19.81
+        },
+        {
+            "Table": 18,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.8
+        },
+        {
+            "Table": 18,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.7
+        },
+        {
+            "Table": 18,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 3.59
+        },
+        {
+            "Table": 18,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 4.49
+        },
+        {
+            "Table": 18,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 8.98
+        },
+        {
+            "Table": 18,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 13.47
+        },
+        {
+            "Table": 18,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.36
+        },
+        {
+            "Table": 18,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.04
+        },
+        {
+            "Table": 18,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.72
+        },
+        {
+            "Table": 18,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 3.4
+        },
+        {
+            "Table": 18,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 6.8
+        },
+        {
+            "Table": 18,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Restrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 10.21
+        },
+        {
+            "Table": 19,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.23
+        },
+        {
+            "Table": 19,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.84
+        },
+        {
+            "Table": 19,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.45
+        },
+        {
+            "Table": 19,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 3.07
+        },
+        {
+            "Table": 19,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 6.13
+        },
+        {
+            "Table": 19,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 9.2
+        },
+        {
+            "Table": 19,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 19,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.48
+        },
+        {
+            "Table": 19,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.98
+        },
+        {
+            "Table": 19,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.47
+        },
+        {
+            "Table": 19,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 4.94
+        },
+        {
+            "Table": 19,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 7.41
+        },
+        {
+            "Table": 19,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 19,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.27
+        },
+        {
+            "Table": 19,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.69
+        },
+        {
+            "Table": 19,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.11
+        },
+        {
+            "Table": 19,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 4.23
+        },
+        {
+            "Table": 19,
+            "Interaction": "Corrosion",
+            "OD_ID": "OD",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 6.34
+        },
+        {
+            "Table": 20,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 20,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.42
+        },
+        {
+            "Table": 20,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.89
+        },
+        {
+            "Table": 20,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.36
+        },
+        {
+            "Table": 20,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 4.73
+        },
+        {
+            "Table": 20,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 7.09
+        },
+        {
+            "Table": 20,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 20,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.14
+        },
+        {
+            "Table": 20,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.53
+        },
+        {
+            "Table": 20,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.91
+        },
+        {
+            "Table": 20,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 3.81
+        },
+        {
+            "Table": 20,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 5.72
+        },
+        {
+            "Table": 20,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 20,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 20,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.31
+        },
+        {
+            "Table": 20,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.63
+        },
+        {
+            "Table": 20,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 3.26
+        },
+        {
+            "Table": 20,
+            "Interaction": "Corrosion",
+            "OD_ID": "ID",
+            "Reduction_Factor": NaN,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 4.9
+        },
+        {
+            "Table": 21,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 21,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 21,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 21,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 21,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.11
+        },
+        {
+            "Table": 21,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 3.17
+        },
+        {
+            "Table": 21,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 21,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 21,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 21,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 21,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 21,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.93
+        },
+        {
+            "Table": 21,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 21,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 21,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 21,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 21,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 21,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.35
+        },
+        {
+            "Table": 22,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 22,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 22,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 22,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 22,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.5
+        },
+        {
+            "Table": 22,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.25
+        },
+        {
+            "Table": 22,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 22,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 22,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 22,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 22,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 22,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.44
+        },
+        {
+            "Table": 22,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 22,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 22,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 22,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 22,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 22,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 10.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.07
+        },
+        {
+            "Table": 23,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 23,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 23,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 23,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 23,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 3.02
+        },
+        {
+            "Table": 23,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 4.52
+        },
+        {
+            "Table": 23,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 23,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 23,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 23,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 23,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.84
+        },
+        {
+            "Table": 23,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.76
+        },
+        {
+            "Table": 23,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 23,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 23,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 23,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 23,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 23,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.93
+        },
+        {
+            "Table": 24,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 24,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 24,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 24,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.07
+        },
+        {
+            "Table": 24,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.14
+        },
+        {
+            "Table": 24,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 3.22
+        },
+        {
+            "Table": 24,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 24,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 24,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 24,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 24,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.41
+        },
+        {
+            "Table": 24,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.11
+        },
+        {
+            "Table": 24,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 24,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 24,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 24,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 24,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.04
+        },
+        {
+            "Table": 24,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 7.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.56
+        },
+        {
+            "Table": 25,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 25,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 25,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.69
+        },
+        {
+            "Table": 25,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.11
+        },
+        {
+            "Table": 25,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 4.22
+        },
+        {
+            "Table": 25,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 6.33
+        },
+        {
+            "Table": 25,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 25,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 25,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 25,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 25,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.58
+        },
+        {
+            "Table": 25,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 3.86
+        },
+        {
+            "Table": 25,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 25,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 25,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 25,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 25,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.8
+        },
+        {
+            "Table": 25,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.71
+        },
+        {
+            "Table": 26,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 26,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 26,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.2
+        },
+        {
+            "Table": 26,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.5
+        },
+        {
+            "Table": 26,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 3.0
+        },
+        {
+            "Table": 26,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 4.5
+        },
+        {
+            "Table": 26,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 26,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 26,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 26,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 26,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.97
+        },
+        {
+            "Table": 26,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.96
+        },
+        {
+            "Table": 26,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 26,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 26,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 26,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 26,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.45
+        },
+        {
+            "Table": 26,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 5.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.18
+        },
+        {
+            "Table": 27,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 27,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.11
+        },
+        {
+            "Table": 27,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.82
+        },
+        {
+            "Table": 27,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 3.52
+        },
+        {
+            "Table": 27,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 7.04
+        },
+        {
+            "Table": 27,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 10.56
+        },
+        {
+            "Table": 27,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 27,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 27,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.72
+        },
+        {
+            "Table": 27,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 2.15
+        },
+        {
+            "Table": 27,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 4.29
+        },
+        {
+            "Table": 27,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 6.44
+        },
+        {
+            "Table": 27,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 27,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 27,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 27,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.5
+        },
+        {
+            "Table": 27,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 3.01
+        },
+        {
+            "Table": 27,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Restrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 4.51
+        },
+        {
+            "Table": 28,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 28,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.9,
+            "Scale_Factor": 1.5
+        },
+        {
+            "Table": 28,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.0
+        },
+        {
+            "Table": 28,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.9,
+            "Scale_Factor": 2.5
+        },
+        {
+            "Table": 28,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.9,
+            "Scale_Factor": 5.0
+        },
+        {
+            "Table": 28,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.9,
+            "Scale_Factor": 7.5
+        },
+        {
+            "Table": 28,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 28,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 28,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.31
+        },
+        {
+            "Table": 28,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.8,
+            "Scale_Factor": 1.64
+        },
+        {
+            "Table": 28,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.8,
+            "Scale_Factor": 3.28
+        },
+        {
+            "Table": 28,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.8,
+            "Scale_Factor": 4.93
+        },
+        {
+            "Table": 28,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 2,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 28,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 3,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 28,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 4,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.0
+        },
+        {
+            "Table": 28,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 5,
+            "Certainty": 0.7,
+            "Scale_Factor": 1.21
+        },
+        {
+            "Table": 28,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 10,
+            "Certainty": 0.7,
+            "Scale_Factor": 2.42
+        },
+        {
+            "Table": 28,
+            "Interaction": "Weld",
+            "OD_ID": NaN,
+            "Reduction_Factor": 3.0,
+            "Restraint": "Unrestrained",
+            "Safety_Factor": 15,
+            "Certainty": 0.7,
+            "Scale_Factor": 3.64
+        }
+    ]
+}
