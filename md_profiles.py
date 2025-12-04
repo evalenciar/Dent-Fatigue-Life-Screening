@@ -9,7 +9,15 @@ import math
 from scipy.signal import savgol_filter
 import matplotlib.pyplot as plt
 
-def find_deflection(data: pd.Series, nominal_radius: float, window_size: int = 11, slope_tolerance: float = 0.003, closeness_percentage: float = 5, buffer_offset: int = 5, min_consecutive_deviations: int = 3, circumferential_mode: bool = False, outbound_data: bool = False) -> tuple[int | None, float | None]:
+def find_deflection(data: pd.Series, 
+                    nominal_radius: float, 
+                    window_size: int = 11, 
+                    slope_tolerance: float = 0.003, 
+                    closeness_percentage: float = 5, 
+                    buffer_offset: int = 5, 
+                    min_consecutive_deviations: int = 3, 
+                    circumferential_mode: bool = False, 
+                    outbound_data: bool = False) -> tuple[int | None, float | None, float | None]:
     """
     Finds the index where the caliper begins deflecting in the inbound half of the data. If using outbound data, the function will reverse the data to treat it as inbound.
     
@@ -62,7 +70,9 @@ def find_deflection(data: pd.Series, nominal_radius: float, window_size: int = 1
             # Reverse the data to treat it as starting from pristine to dent
             data = data[::-1]
         init_idx, init_radius = _find_deflection_initiation(data.to_numpy(), nominal_radius, window_size, slope_tolerance, closeness_percentage, buffer_offset, min_consecutive_deviations, circumferential_mode)
-        init_axial = data.index[init_idx] if init_idx is not None else None
+        if init_idx is None or init_radius is None:
+            return None, None, None
+        init_axial = data.index[init_idx]
 
         if circumferential_mode:
             # Convert back to original outbound index (this is the end index)
@@ -77,7 +87,9 @@ def find_deflection(data: pd.Series, nominal_radius: float, window_size: int = 1
         if not circumferential_mode:
             data = data[::-1]
         init_idx, init_radius = _find_deflection_initiation(data.to_numpy(), nominal_radius, window_size, slope_tolerance, closeness_percentage, buffer_offset, min_consecutive_deviations, circumferential_mode)
-        init_axial = data.index[init_idx] if init_idx is not None else None
+        if init_idx is None or init_radius is None:
+            return None, None, None
+        init_axial = data.index[init_idx]
 
         if not circumferential_mode:
             # Convert back to original outbound index (this is the end index)
@@ -88,7 +100,14 @@ def find_deflection(data: pd.Series, nominal_radius: float, window_size: int = 1
 
         return init_idx, init_axial, init_radius
 
-def _find_deflection_initiation(data: np.ndarray, nominal_radius: float, window_size: int = 11, slope_tolerance: float = 0.003, closeness_percentage: float = 5, buffer_offset: int = 5, min_consecutive_deviations: int = 3, circumferential_mode: bool = False) -> tuple[int | None, float | None]:
+def _find_deflection_initiation(data: np.ndarray, 
+                                nominal_radius: float, 
+                                window_size: int = 11, 
+                                slope_tolerance: float = 0.003, 
+                                closeness_percentage: float = 5, 
+                                buffer_offset: int = 5, 
+                                min_consecutive_deviations: int = 3, 
+                                circumferential_mode: bool = False) -> tuple[int | None, float | None]:
     """
     Internal helper to find the initiation index of deflection assuming the data starts from pristine pipe and moves towards the dent.
     
@@ -191,11 +210,13 @@ def _find_deflection_initiation(data: np.ndarray, nominal_radius: float, window_
                     i = j
     
     # If no valid deflection point found (entire data pristine or no valid maximum)
-    if start_idx >= len(data):
+    if start_idx is None:
+        return None, None
+    elif start_idx >= len(data):
         return None, None
     
     # Apply buffer offset (subtract for initiation to include more preceding data)
-    start_idx = max(0, start_idx - buffer_offset)
+    start_idx = int(max(0, start_idx - buffer_offset))
 
     # Cap to data length
     start_val = data[start_idx] if start_idx < len(data) else None
@@ -240,20 +261,12 @@ class DentProfiles:
                  percentages_axial: list[int] = [95, 90, 85, 75, 60, 50, 40, 30, 20, 15, 10, 5],
                  percentages_circ: list[int] = [90, 85, 80, 75, 70, 60, 50, 40, 30, 20, 15, 10],
                  percentages_area: list[int] = [85, 75, 60, 50, 40, 30, 20, 15, 10],
-                 process_data: bool = True,
-                 file_path: str = None
+                 file_path: str | None = None
                  ):
         """
         Initialize the DentProfiles class.
         """
-        self._results_axial_us = None
-        self._results_axial_ds = None
-        self._results_circ_us_ccw = None
-        self._results_circ_us_cw = None
-        self._results_circ_ds_ccw = None
-        self._results_circ_ds_cw = None
-        if process_data:
-            self._process_data(df, OD, WT, ignore_edge, percentages_axial, percentages_circ, percentages_area, file_path)
+        self._process_data(df, OD, WT, ignore_edge, percentages_axial, percentages_circ, percentages_area, file_path)
 
     def __repr__(self):
         # Provide a concise summary of key attributes. Combine the dictionaries into a single table for display.
@@ -315,7 +328,7 @@ class DentProfiles:
                       percentages_axial: list,
                       percentages_circ: list,
                       percentages_area: list, 
-                      file_path: str):
+                      file_path: str | None):
         """
         Class to handle dent profile data and compute key metrics.
         Parameters
@@ -332,8 +345,15 @@ class DentProfiles:
         start_idx = math.ceil(df.shape[0]*ignore_edge)
         end_idx = math.floor(df.shape[0]*(1-ignore_edge))
         df_trim = df.iloc[start_idx:end_idx, :]
-        self._axial_min, self._circ_min = df_trim.stack().idxmin()
-        self._radius_min = df_trim.loc[self._axial_min, self._circ_min]
+        min_idx = df_trim.stack().idxmin()
+        if isinstance(min_idx, tuple):
+            self._axial_min, self._circ_min = float(min_idx[0]), float(min_idx[1])
+        else:
+            # If idxmin returns a single value, find the 2D location manually
+            stacked = df_trim.stack()
+            self._axial_min = float(stacked.loc[min_idx:min_idx].index[0][0])
+            self._circ_min = float(stacked.loc[min_idx:min_idx].index[0][1])
+        self._radius_min = float(df_trim.at[self._axial_min, self._circ_min])
         # Extract the Axial and Circumferential profiles at the deepest point
         self._axial_profile = self._df[self._circ_min]
         self._circ_profile = self._df.loc[self._axial_min]
@@ -341,8 +361,8 @@ class DentProfiles:
         self._axial_us = self._axial_profile.loc[:self._axial_min]
         self._axial_ds = self._axial_profile.loc[self._axial_min:]
         # Split Circumferential data into CCW/CW
-        self._circ_ccw = self._circ_profile.loc[:self._circ_min]
-        self._circ_cw = self._circ_profile.loc[self._circ_min:]
+        self._circ_ccw = pd.Series(self._circ_profile.loc[:self._circ_min])
+        self._circ_cw = pd.Series(self._circ_profile.loc[self._circ_min:])
         # Determine the nominal internal radius
         self._nominal_radius = self.get_nominal(expected_nominal=(OD/2 - WT), ignore_edge=ignore_edge)
         self._dent_depth = self._nominal_radius - self._radius_min
@@ -374,24 +394,33 @@ class DentProfiles:
             self.create_figure("Axial", self._axial_us, self._axial_ds, self._results_axial_us, self._results_axial_ds, self._axial_min, file_path)
             self.create_figure("Circ_US", self._circ_ccw, self._circ_cw, self._results_circ_us_ccw, self._results_circ_us_cw, self._circ_min, file_path)
             self.create_figure("Circ_DS", self._circ_ccw, self._circ_cw, self._results_circ_ds_ccw, self._results_circ_ds_cw, self._circ_min, file_path)
-    
-    def graph(self, quadrant: str) -> plt.Figure:
+    def graph(self, quadrant: str):
+        """Generate and return a matplotlib Figure for the specified quadrant ('Axial', 'Circ_US', 'Circ_DS')."""
         """Generate and return a matplotlib Figure for the specified quadrant ('Axial', 'Circ_US', 'Circ_DS')."""
         if quadrant == "Axial":
-            fig = self.create_figure("Axial", self._axial_us, self._axial_ds, self._results_axial_us, self._results_axial_ds, self._axial_min)
+            self.create_figure("Axial", self._axial_us, self._axial_ds, self._results_axial_us, self._results_axial_ds, self._axial_min)
         elif quadrant == "Circ_US":
-            fig = self.create_figure("Circ_US", self._circ_ccw, self._circ_cw, self._results_circ_us_ccw, self._results_circ_us_cw, self._circ_min)
+            self.create_figure("Circ_US", self._circ_ccw, self._circ_cw, self._results_circ_us_ccw, self._results_circ_us_cw, self._circ_min)
         elif quadrant == "Circ_DS":
-            fig = self.create_figure("Circ_DS", self._circ_ccw, self._circ_cw, self._results_circ_ds_ccw, self._results_circ_ds_cw, self._circ_min)
+            self.create_figure("Circ_DS", self._circ_ccw, self._circ_cw, self._results_circ_ds_ccw, self._results_circ_ds_cw, self._circ_min)
         else:
             raise ValueError("Invalid quadrant specified. Choose from 'Axial', 'Circ_US', 'Circ_DS'.")
-        return fig
     
     @property
     def min_idx(self) -> tuple[int, int]:
         """Tuple of (Axial index, Circumferential index) of the deepest point."""
         axial_idx = self._df.index.get_loc(self._axial_min)
+        if isinstance(axial_idx, slice):
+            axial_idx = int(axial_idx.start)  # Take the start if slice
+        elif isinstance(axial_idx, np.ndarray):
+            # If mask, take the first True occurrence
+            axial_idx = int(np.where(axial_idx)[0][0])
         circ_idx = self._df.columns.get_loc(self._circ_min)
+        if isinstance(circ_idx, slice):
+            circ_idx = int(circ_idx.start)  # Take the start if slice
+        elif isinstance(circ_idx, np.ndarray):
+            # If mask, take the first True occurrence
+            circ_idx = int(np.where(circ_idx)[0][0])
         return (axial_idx, circ_idx)
     @property
     def df(self) -> pd.DataFrame:
@@ -404,7 +433,7 @@ class DentProfiles:
     @property
     def circ_profile(self) -> pd.Series:
         """Circumferential profile at the deepest point."""
-        return self._circ_profile
+        return pd.Series(self._circ_profile)
     @property
     def axial_us(self) -> pd.Series:
         """Axial profile upstream of the deepest point."""
@@ -438,27 +467,27 @@ class DentProfiles:
         """Nominal internal radius."""
         return self._nominal_radius
     @property
-    def baseline_us(self) -> tuple[int, float]:
+    def baseline_us(self) -> tuple[int, float, float]:
         """Baseline radius upstream of the deepest point."""
         return self._baseline_us
     @property
-    def baseline_ds(self) -> tuple[int, float]:
+    def baseline_ds(self) -> tuple[int, float, float]:
         """Baseline radius downstream of the deepest point."""
         return self._baseline_ds
     @property
-    def baseline_us_ccw(self) -> tuple[int, float]:
+    def baseline_us_ccw(self) -> tuple[int, float, float]:
         """Baseline radius counter-clockwise of the deepest point."""
         return self._baseline_us_ccw
     @property
-    def baseline_us_cw(self) -> tuple[int, float]:
+    def baseline_us_cw(self) -> tuple[int, float, float]:
         """Baseline radius clockwise of the deepest point."""
         return self._baseline_us_cw
     @property
-    def baseline_ds_ccw(self) -> tuple[int, float]:
+    def baseline_ds_ccw(self) -> tuple[int, float, float]:
         """Baseline radius counter-clockwise of the deepest point."""
         return self._baseline_ds_ccw
     @property
-    def baseline_ds_cw(self) -> tuple[int, float]:
+    def baseline_ds_cw(self) -> tuple[int, float, float]:
         """Baseline radius clockwise of the deepest point."""
         return self._baseline_ds_cw
     @property
@@ -542,7 +571,8 @@ class DentProfiles:
         # Use the outer 10% of the data to determine nominal radius
         n_points = max(1, math.ceil(self._df.shape[0]*ignore_edge))
         edge_data = pd.concat([self._df.iloc[:n_points, :], self._df.iloc[-n_points:, :]])
-        nominal_radius = edge_data.stack().mean()
+        mean_value = edge_data.stack().mean()
+        nominal_radius = float(mean_value.item() if isinstance(mean_value, pd.Series) else mean_value)
         if expected_nominal is not None and abs(nominal_radius - expected_nominal) <= (expected_nominal * threshold):
             # If the expected nominal is provided and close enough, use it
             nominal_radius = expected_nominal
@@ -556,10 +586,10 @@ class DentProfiles:
                      window_size: int = 11,
                      slope_tolerance: float = 0.003,
                      closeness_percentage: float = 5,
-                     buffer_offset: float = 5,
+                     buffer_offset: int = 5,
                      min_consecutive_deviations: int = 3,
                      circumferential_mode: bool = False,
-                     outbound_data: bool = False) -> tuple[int, float]:
+                     outbound_data: bool = False) -> tuple[int, float, float]:
         """
         Determine the baseline radius which will be the reference line for all calculations. This can either be a fixed
         offset from the nominal radius or determined from the changing slope in the profile.
@@ -611,18 +641,20 @@ class DentProfiles:
         # Calculate the baseline radius from the profile data
         baseline_index, baseline_axial, baseline_val = find_deflection(data, self._nominal_radius, window_size=window_size, slope_tolerance=slope_tolerance, closeness_percentage=closeness_percentage, buffer_offset=buffer_offset, min_consecutive_deviations=min_consecutive_deviations, circumferential_mode=circumferential_mode, outbound_data=outbound_data)
 
-        if baseline_index is not None and baseline_val is not None:
+        if baseline_index is not None and baseline_axial is not None and baseline_val is not None:
             return baseline_index, baseline_axial, baseline_val
         else:
             # If no valid baseline found, return default and find the closest point in data to the default,
-            closest_idx = (data - baseline_default).abs().idxmin()
-            closest_axial = data.index[closest_idx] if closest_idx is not None else None
+            closest_idx = int((data - baseline_default).abs().idxmin())
+            if closest_idx is None:
+                raise ValueError("Unable to determine baseline index from data.")
+            closest_axial = float(data.index[closest_idx])
             return closest_idx, closest_axial, baseline_default
 
     def get_baseline_circ(self, 
                           data: pd.Series, 
                           baseline_axial_radius: float, 
-                          outbound_data: bool = False) -> tuple[int, float]:
+                          outbound_data: bool = False) -> tuple[int, float, float]:
         """
         Determine the baseline radius in the circumferential profile using the axial baseline index.
 
@@ -655,13 +687,18 @@ class DentProfiles:
         if crossing_idx is None or crossing_idx == data.index[0]:
             # If no crossing found, use the last index
             circ_index = len(data) - 1
-            circ_deg = data.index[circ_index]
-            circ_radius = data.loc[circ_deg]
+            circ_deg = float(data.index[circ_index])
+            circ_radius = float(data.loc[circ_deg])
         else:
             # Linear interpolation to find the exact crossing point
             circ_index = data.index.get_loc(crossing_idx)
-            x0, x1 = data.index[data.index.get_loc(crossing_idx) - 1], crossing_idx
-            y0, y1 = data.loc[x0], data.loc[x1]
+            if isinstance(circ_index, slice):
+                circ_index = int(circ_index.start)  # Take the start if slice
+            elif isinstance(circ_index, np.ndarray):
+                # If mask, take the first True occurrence
+                circ_index = int(np.where(circ_index)[0][0])
+            x0, x1 = float(data.index[circ_index - 1]), float(pd.Series([crossing_idx]).item())
+            y0, y1 = float(data.loc[x0]), float(data.loc[x1])
             if y1 != y0:
                 circ_deg = x0 + (baseline_axial_radius - y0) * (x1 - x0) / (y1 - y0)
             else:
@@ -670,7 +707,14 @@ class DentProfiles:
 
         return circ_index, circ_deg, circ_radius
     
-    def get_measurements(self, data: pd.Series, dent_depth: float, dent_location: float, baseline: tuple, percentages_length: list, percentages_area: list, outbound_data: bool = False) -> dict:
+    def get_measurements(self, 
+                         data: pd.Series, 
+                         dent_depth: float, 
+                         dent_location: float, 
+                         baseline: tuple, 
+                         percentages_length: list[float], 
+                         percentages_area: list[float], 
+                         outbound_data: bool = False) -> dict:
         """
         Calculate the lengths and areas of the dent in all four quadrants using the specified percentages of the dent depth.
 
@@ -722,8 +766,14 @@ class DentProfiles:
                 interp_position = None
             else:
                 # Linear interpolation to find the exact crossing point
-                x0, x1 = data.index[data.index.get_loc(crossing_idx) - 1], crossing_idx
-                y0, y1 = data.loc[x0], data.loc[x1]
+                circ_index = data.index.get_loc(crossing_idx)
+                if isinstance(circ_index, slice):
+                    circ_index = int(circ_index.start)  # Take the start if slice
+                elif isinstance(circ_index, np.ndarray):
+                    # If mask, take the first True occurrence
+                    circ_index = int(np.where(circ_index)[0][0])
+                x0, x1 = float(data.index[circ_index - 1]), float(pd.Series([crossing_idx]).item())
+                y0, y1 = float(data.loc[x0]), float(data.loc[x1])
                 if y1 != y0:
                     interp_position = x0 + (target_radius - y0) * (x1 - x0) / (y1 - y0)
                 else:
@@ -770,7 +820,15 @@ class DentProfiles:
 
         return {"lengths": lengths, "areas": cum_areas}
 
-    def create_figure(self, quadrant: str, profile_us: pd.Series, profile_ds: pd.Series, results_us: dict, results_ds: dict, dent_location: float, file_path: str=None, palette: list = [
+    def create_figure(self, 
+                      quadrant: str, 
+                      profile_us: pd.Series, 
+                      profile_ds: pd.Series, 
+                      results_us: dict, 
+                      results_ds: dict, 
+                      dent_location: float, 
+                      file_path: str | None = None, 
+                      palette: list = [
             '#1f77b4',  # muted blue
             '#ff7f0e',  # safety orange
             '#2ca02c',  # cooked asparagus green
