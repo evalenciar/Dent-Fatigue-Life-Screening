@@ -2,3 +2,5 @@
 /.venv
 /archive
 /tables
+processing.py
+*_dev.*

@@ -6,18 +6,12 @@ API RP 1183 Section 6.2 Dent Geometry Profile Characterization
 import numpy as np
 import pandas as pd
 import math
-from scipy.signal import savgol_filter
 import matplotlib.pyplot as plt
 
 def find_deflection(data: pd.Series, 
-                    nominal_radius: float, 
-                    window_size: int = 11, 
-                    slope_tolerance: float = 0.003, 
-                    closeness_percentage: float = 5, 
-                    buffer_offset: int = 5, 
-                    min_consecutive_deviations: int = 3, 
-                    circumferential_mode: bool = False, 
-                    outbound_data: bool = False) -> tuple[int | None, float | None, float | None]:
+                    initial_guess: float = 0.5,
+                    angle_threshold: float = 0.05,
+                    plot_lines: bool = False) -> tuple[int | None, float | None, float | None]:
     """
     Finds the index where the caliper begins deflecting in the inbound half of the data. If using outbound data, the function will reverse the data to treat it as inbound.
     
@@ -31,30 +25,12 @@ def find_deflection(data: pd.Series,
         Series of caliper radius measurements for the inbound half, from pristine to dent minimum.
         - Guidance: Split full data at the minimum radius index (e.g., `data = full_data[:min_idx + 1]`). Length must be >= `window_size`. Smooth outliers if extreme.
         - Example: `pd.Series([10.0, 9.99, 9.98, ..., 8.5])`.
-    nominal_radius : float
-        Expected radius of the pristine pipe.
-        - Guidance: Use design specs or mean of pristine section (e.g., first 10–20 points). Adjust for sensor bias if needed.
-    window_size : int, optional (default=11)
-        Window for Savitzky-Golay filter to smooth derivatives.
-        - Guidance: Odd integer (5–21). Use 5–7 for sharp changes, 15–21 for noisy data. Match to data resolution.
-    slope_tolerance : float, optional (default=0.001)
-        Slope threshold for pristine sections or local maxima.
-        - Guidance: 0.001–0.01 for low noise, 0.01–0.1 for high noise. In circumferential_mode, defines zero-slope for maxima.
-    closeness_percentage : float, optional (default=5)
-        Percentage tolerance for radius closeness to nominal.
-        - Guidance: 2–5% for stable data, 5–10% for noisy or variable pipes. Verify with radius histograms.
-    buffer_offset : int, optional (default=5)
-        Points to subtract from start index for preceding data.
-        - Guidance: 3–10 points; smaller for high-resolution, larger for sparse/noisy data.
-    min_consecutive_deviations : int, optional (default=3)
-        Minimum consecutive deviations (default mode) or consecutive points at local maximum (circumferential_mode).
-        - Guidance: 2–5; 2 for sharp deflections/maxima, 3–5 for noisy data.
-    circumferential_mode : bool, optional (default=False)
-        If True, detects deflection at the first local maximum (slope ≈ 0) near nominal radius. If False, uses sustained deviation.
-        - Guidance: Enable for circumferential features causing peaks near nominal radius. Inspect data for such maxima.
-    outbound_data : bool, optional (default=False)
-        If False, data is from pristine to dent minimum. If True, data is from dent minimum to pristine and will be reversed.
-        - Guidance: Ensure data direction matches this flag. Reverse if necessary.
+    initial_guess : float, optional (default=0.5)
+        Initial guess for the shoulder location as a fraction of the data length.
+    angle_threshold : float, optional (default=0.05)
+        Threshold angle in radians below which the shoulder is not considered valid.
+    plot_lines : bool, optional (default=False)
+        Whether to plot the linear fits and residuals for debugging.
     
     Returns
     -------
@@ -65,163 +41,116 @@ def find_deflection(data: pd.Series,
     init_radius : float or None
         The radius at init_idx, or None if not detected.
     """
-    if not outbound_data:
-        if circumferential_mode:
-            # Reverse the data to treat it as starting from pristine to dent
-            data = data[::-1]
-        init_idx, init_radius = _find_deflection_initiation(data.to_numpy(), nominal_radius, window_size, slope_tolerance, closeness_percentage, buffer_offset, min_consecutive_deviations, circumferential_mode)
-        if init_idx is None or init_radius is None:
-            return None, None, None
-        init_axial = data.index[init_idx]
-
-        if circumferential_mode:
-            # Convert back to original outbound index (this is the end index)
-            init_idx = len(data) - 1 - init_idx
-
-            # Cap to data length
-            init_idx = min(len(data) - 1, init_idx)
-
-        return init_idx, init_axial, init_radius
-    else:
-        # Reverse the data to treat it as starting from pristine to dent
-        if not circumferential_mode:
-            data = data[::-1]
-        init_idx, init_radius = _find_deflection_initiation(data.to_numpy(), nominal_radius, window_size, slope_tolerance, closeness_percentage, buffer_offset, min_consecutive_deviations, circumferential_mode)
-        if init_idx is None or init_radius is None:
-            return None, None, None
-        init_axial = data.index[init_idx]
-
-        if not circumferential_mode:
-            # Convert back to original outbound index (this is the end index)
-            init_idx = len(data) - 1 - init_idx
-
-            # Cap to data length
-            init_idx = min(len(data) - 1, init_idx)
-
-        return init_idx, init_axial, init_radius
-
-def _find_deflection_initiation(data: np.ndarray, 
-                                nominal_radius: float, 
-                                window_size: int = 11, 
-                                slope_tolerance: float = 0.003, 
-                                closeness_percentage: float = 5, 
-                                buffer_offset: int = 5, 
-                                min_consecutive_deviations: int = 3, 
-                                circumferential_mode: bool = False) -> tuple[int | None, float | None]:
+    x = data.index.to_numpy()
+    y = data.to_numpy()
+    init_idx, init_axial, init_radius = _find_shoulder_min(x, y, initial_guess, angle_threshold, plot_lines)
+    if init_idx is None or init_radius is None or init_axial is None:
+        return None, None, None
+    
+    return init_idx, init_axial, init_radius
+    
+def _find_shoulder_min(x: np.ndarray,
+                       y: np.ndarray,
+                       initial_guess: float = 0.5,
+                       angle_threshold: float = 0.05,
+                       plot_lines: bool = False) -> tuple[int | None, float | None, float | None]:
     """
-    Internal helper to find the initiation index of deflection assuming the data starts from pristine pipe and moves towards the dent.
-    
-    In default mode, scans from the left to find the first point where the condition deviates from pristine (flat slope and radius close to nominal) 
-    in a sustained manner (for at least min_consecutive_deviations points) to handle noise and vibrations in the pristine section.
-    
-    In circumferential_mode, identifies the first local maximum (slope ≈ 0) where the radius is close to nominal_radius, suitable for cases where a peak near nominal marks the deflection point (e.g., due to interacting features).
-    
+    Internal helper to find the dent shoulder location using minimization of residuals from two linear fits.
+
     Parameters
     ----------
     data : np.ndarray
         Array of caliper radius measurements along the pipeline section. Must be a 1D array of floating-point values representing radii at sequential points.
-        - Guidance: Ensure the data is preprocessed to represent either the inbound (pristine to dent) or reversed outbound (dent to pristine) half. Array length should be at least `window_size`. Smooth extreme outliers manually if necessary, as the function handles moderate noise via the Savitzky-Golay filter.
+        - Guidance: Ensure the data is preprocessed to represent either the inbound (pristine to dent) or reversed outbound (dent to pristine) half. Array length should be sufficient to capture the shoulder region. Smooth extreme outliers manually if necessary.
         - Example: `np.array([10.0, 9.99, 9.98, ..., 8.5])` where 10.0 is nominal radius.
-    nominal_radius : float
-        Expected radius of the pristine (undamaged) pipe, used as the baseline for detecting deviations in radius and slope.
-        - Guidance: Use the pipeline's nominal inner radius from design specs or compute as the mean of a known pristine section (e.g., first/last 10–20 points if flat). Adjust empirically if data shows a sensor bias by inspecting the data plot.
-    window_size : int, optional (default=11)
-        Window length for the Savitzky-Golay filter to compute a smoothed first derivative (slope), reducing noise effects.
-        - Guidance: Must be an odd integer > 1 (e.g., 5, 7, 11, 15). Smaller windows (5–7) preserve local details but are noise-sensitive; larger windows (15–21) smooth more, suitable for noisy data but may delay detection of sharp changes. Choose based on data resolution: larger for high sampling rates, smaller for sparse data. Test by plotting the smoothed derivative.
-    slope_tolerance : float, optional (default=0.001)
-        Threshold for considering the slope (first derivative) as "flat" (close to zero), indicating a pristine section or a local maximum in circumferential_mode.
-        - Guidance: Units are radius change per data point (e.g., mm/sample). Set based on expected noise: 0.001–0.01 for low noise, 0.01–0.1 for high noise. In circumferential_mode, this defines the zero-slope threshold for local maxima. Inspect the derivative of pristine sections to estimate typical slope variations.
-    closeness_percentage : float, optional (default=5)
-        Percentage tolerance for how close the radius must be to `nominal_radius` to be considered pristine or a valid local maximum.
-        - Guidance: Set based on expected radius variation in pristine sections due to noise or manufacturing tolerances. 2–5% is typical for well-calibrated sensors; increase to 10% for noisy data or variable pipe conditions. Check radius histograms of pristine sections to confirm.
-    buffer_offset : int, optional (default=5)
-        Number of points to subtract from the detected initiation index to include preceding pristine data, ensuring no relevant data is excluded.
-        - Guidance: Use 3–10 points depending on data resolution and desired margin. Smaller offsets (3–5) for high-resolution data; larger (5–10) for sparse or noisy data to capture context before deflection. Ensure it doesn’t push the index below 0.
-    min_consecutive_deviations : int, optional (default=3)
-        In default mode, minimum number of consecutive points that must deviate from pristine conditions to confirm the start of deflection. In circumferential_mode, minimum consecutive points with near-zero slope and radius close to nominal to confirm a local maximum.
-        - Guidance: Use 2–5 points; 2 for sharp deflections or clear maxima, 3–5 for noisy data to avoid false positives from brief spikes. Adjust based on inspection of noise patterns or slope behavior near maxima.
-    circumferential_mode : bool, optional (default=False)
-        If True, detects the deflection point as the global maximum (highest radius) among points with slope ≈ 0 (within slope_tolerance) and radius close to nominal_radius (within closeness_percentage). If False, uses the original sustained-deviation approach.
-        - Guidance: Enable for cases where a circumferential feature or interacting dent causes a prominent peak near nominal radius at the deflection boundary, and the global maximum is the most significant marker. Disable for standard dent detection where sustained radius/slope deviation marks the start. Inspect data plots to confirm a prominent peak near nominal radius.
-    
+    initial_guess : float, optional
+        Initial guess for the breakpoint as a fraction of the data length (where 0 < x < 1). Default is 0.5.
+        - Guidance: Choose a value that roughly estimates the shoulder location. For example, 0.5 for mid-point, or adjust based on visual inspection of the data.
+    angle_threshold : float, optional
+        Threshold angle in degrees below which the shoulder is not considered valid. Default is 0.05 degrees.
+    plot_lines : bool, optional
+        Whether to plot the fitted lines and breakpoint for visualization. Default is False.
     Returns
     -------
-    start_idx : int or None
-        The index where deflection initiates (with buffer applied), or None if no deflection detected.
-    start_val : float or None
-        The radius at start_idx, or None if no deflection detected.
+    tuple[int | None, float | None, float | None]
+        A tuple containing the index of the shoulder, the axial position, and the radius at the shoulder. Returns (None, None, None) if not found.
     """
-    if len(data) < window_size:
-        raise ValueError("Data length must be at least the window size.")
-    
-    # Compute smoothed first derivative
-    der = savgol_filter(data, window_length=window_size, polyorder=2, deriv=1)
-    
-    # Closeness tolerance for radius
-    closeness_tol = (closeness_percentage / 100) * nominal_radius
-    
-    # Define pristine condition: flat slope and radius close to nominal
-    def is_pristine(i):
-        return abs(der[i]) <= slope_tolerance and abs(data[i] - nominal_radius) <= closeness_tol
-    
-    start_idx = 0
-    if circumferential_mode:
-        # Find global maximum among points with near-zero slope and radius close to nominal
-        max_radius = -np.inf
-        max_idx = None
-        i = 0
-        while i < len(der):
-            if is_pristine(i):
-                # Check for consecutive points to confirm the maximum
-                consec = 1
-                j = i + 1
-                while j < len(der) and is_pristine(j):
-                    consec += 1
-                    j += 1
-                if consec >= min_consecutive_deviations:
-                    # Check if this region contains a higher radius
-                    region_max = np.max(data[i:j])
-                    if region_max > max_radius:
-                        max_radius = region_max
-                        max_idx = i + np.argmax(data[i:j])
-                i = j
-            else:
-                i += 1
-        start_idx = max_idx
-    else:
-        # Default mode: find sustained deviation from pristine
-        i = 0
-        while i < len(der):
-            if is_pristine(i):
-                start_idx = i + 1
-                i += 1
-            else:
-                # Check for consecutive deviations
-                consec = 1
-                j = i + 1
-                while j < len(der) and not is_pristine(j):
-                    consec += 1
-                    j += 1
-                if consec >= min_consecutive_deviations:
-                    break
-                else:
-                    # Skip the noise blip and continue
-                    start_idx = j
-                    i = j
-    
-    # If no valid deflection point found (entire data pristine or no valid maximum)
-    if start_idx is None:
-        return None, None
-    elif start_idx >= len(data):
-        return None, None
-    
-    # Apply buffer offset (subtract for initiation to include more preceding data)
-    start_idx = int(max(0, start_idx - buffer_offset))
+    from scipy.optimize import minimize
+    def _minimize_residuals(breakpoint_frac, x, y):
+        breakpoint_idx = int(breakpoint_frac * (len(x) - 1))
 
-    # Cap to data length
-    start_val = data[start_idx] if start_idx < len(data) else None
+        # Fit first line to data before the breakpoint
+        coeffs1 = np.polyfit(x[:breakpoint_idx + 1], y[:breakpoint_idx + 1], 1)
+        line1 = np.polyval(coeffs1, x[:breakpoint_idx + 1])
 
-    return start_idx, start_val
+        # Fit second line to data after the breakpoint
+        coeffs2 = np.polyfit(x[breakpoint_idx:], y[breakpoint_idx:], 1)
+        line2 = np.polyval(coeffs2, x[breakpoint_idx:])
+
+        # Calculate residuals
+        residuals1 = y[:breakpoint_idx + 1] - line1
+        residuals2 = y[breakpoint_idx:] - line2
+
+        total_residual = np.sum(residuals1**2) + np.sum(residuals2**2)
+        return total_residual
+    
+    def _find_closest_point(breakpoint_frac, x, y, plot_lines=False) -> tuple[int | None, float | None, float | None]:
+        breakpoint_idx = int(breakpoint_frac * (len(x) - 1))
+        if breakpoint_idx <= 0 or breakpoint_idx >= len(x) - 1:
+            return None, None, None  # Invalid breakpoint
+
+        # Fit first line to data before the breakpoint
+        coeffs1 = np.polyfit(x[:breakpoint_idx + 1], y[:breakpoint_idx + 1], 1)
+        line1 = np.polyval(coeffs1, x[:breakpoint_idx + 1])
+
+        # Fit second line to data after the breakpoint
+        coeffs2 = np.polyfit(x[breakpoint_idx:], y[breakpoint_idx:], 1)
+        line2 = np.polyval(coeffs2, x[breakpoint_idx:])
+
+        # Find the intersection point of the two lines
+        if coeffs1[0] == coeffs2[0]:
+            return None, None, None  # Parallel lines, no intersection
+        A = np.array([[coeffs1[0], -1], [coeffs2[0], -1]])
+        b = np.array([-coeffs1[1], -coeffs2[1]])
+        intersection = np.linalg.solve(A, b)
+
+        # Determine the angle between the two lines. If it is below a certain threshold, return None
+        # angle = np.arccos((1 + coeffs1[0] * coeffs2[0]) / (np.sqrt(1 + coeffs1[0]**2) * np.sqrt(1 + coeffs2[0]**2)))
+        angle = np.arctan(abs((coeffs2[0] - coeffs1[0]) / (1 + coeffs1[0] * coeffs2[0])))
+        if angle < np.deg2rad(angle_threshold):  # Threshold of 5 degrees
+            return None, None, None
+
+        # Find the closest data point to the intersection
+        distances = np.sqrt((x - intersection[0])**2 + (y - intersection[1])**2)
+        closest_idx = int(np.argmin(distances))
+
+        if plot_lines:
+            plt.figure()
+            plt.scatter(x, y, c='b', label='Data', s=0.5)
+            plt.plot(x[:breakpoint_idx + 1], line1, 'r-', label='Fit 1')
+            plt.plot(x[breakpoint_idx:], line2, 'g-', label='Fit 2')
+            # plt.scatter(intersection[0], intersection[1], c='k', label='Intersection')
+            plt.scatter(x[closest_idx], y[closest_idx], c='orange', marker='d', label="Dent Shoulder")
+            plt.legend()
+            plt.xlabel('Axial Position [in]')
+            plt.ylabel('Radius [in]')
+            plt.title('Dent Shoulder Detection via Two-Line Fit')
+            plt.show()
+
+        return closest_idx, x[closest_idx], y[closest_idx]
+    
+    if initial_guess <= 0:
+        initial_guess = 0.01
+    elif initial_guess >= 1:
+        initial_guess = 0.99
+    
+    result = minimize(_minimize_residuals, 
+                      initial_guess, 
+                      args=(x, y), method='Nelder-Mead', 
+                      options={'xatol': 1e-8, 'fatol': 1e-8},
+                      bounds=[(0.01, 0.99)])
+    best_breakpoint = result.x[0]
+    return _find_closest_point(best_breakpoint, x, y, plot_lines)
 
 def get_restraint_parameter(AAX_15: float, ATR_15: float, LTR_70: float, LAX_15: float, LAX_30: float, LAX_50: float, LTR_80: float) -> float:
     """
@@ -266,7 +195,13 @@ class DentProfiles:
         """
         Initialize the DentProfiles class.
         """
-        self._process_data(df, OD, WT, ignore_edge, percentages_axial, percentages_circ, percentages_area, file_path)
+        self.percentages_axial = percentages_axial
+        self.percentages_circ = percentages_circ
+        self.percentages_area = percentages_area
+        self.file_path = file_path
+
+        self._prepare_data(df, OD, WT, ignore_edge)
+        self._measure_data(percentages_axial, percentages_circ, percentages_area, file_path)
 
     def __repr__(self):
         # Provide a concise summary of key attributes. Combine the dictionaries into a single table for display.
@@ -320,15 +255,11 @@ class DentProfiles:
         )
         return return_string
 
-    def _process_data(self, 
+    def _prepare_data(self, 
                       df: pd.DataFrame, 
                       OD: float, 
                       WT: float, 
-                      ignore_edge: float,
-                      percentages_axial: list,
-                      percentages_circ: list,
-                      percentages_area: list, 
-                      file_path: str | None):
+                      ignore_edge: float):
         """
         Class to handle dent profile data and compute key metrics.
         Parameters
@@ -341,6 +272,7 @@ class DentProfiles:
         self._df = df
         self._OD = OD
         self._WT = WT
+        self._expected_nominal = OD/2 - WT
         # Locate the deepest point, using the ignore_edge parameter to avoid edge effects
         start_idx = math.ceil(df.shape[0]*ignore_edge)
         end_idx = math.floor(df.shape[0]*(1-ignore_edge))
@@ -353,7 +285,7 @@ class DentProfiles:
             stacked = df_trim.stack()
             self._axial_min = float(stacked.loc[min_idx:min_idx].index[0][0])
             self._circ_min = float(stacked.loc[min_idx:min_idx].index[0][1])
-        self._radius_min = float(df_trim.at[self._axial_min, self._circ_min])
+        self._radius_min = float(df_trim.at[self._axial_min, self._circ_min]) # type: ignore
         # Extract the Axial and Circumferential profiles at the deepest point
         self._axial_profile = self._df[self._circ_min]
         self._circ_profile = self._df.loc[self._axial_min]
@@ -361,15 +293,24 @@ class DentProfiles:
         self._axial_us = self._axial_profile.loc[:self._axial_min]
         self._axial_ds = self._axial_profile.loc[self._axial_min:]
         # Split Circumferential data into CCW/CW
-        self._circ_ccw = pd.Series(self._circ_profile.loc[:self._circ_min])
-        self._circ_cw = pd.Series(self._circ_profile.loc[self._circ_min:])
+        self._circ_ccw = pd.Series(self._circ_profile.loc[:self._circ_min]) # type: ignore
+        self._circ_cw = pd.Series(self._circ_profile.loc[self._circ_min:]) # type: ignore
         # Determine the nominal internal radius
-        self._nominal_radius = self.get_nominal(expected_nominal=(OD/2 - WT), ignore_edge=ignore_edge)
+        self._nominal_radius = self.get_nominal(expected_nominal=self._expected_nominal, ignore_edge=ignore_edge)
         self._dent_depth = self._nominal_radius - self._radius_min
+        # Ensure that dent depth is non-negative
+        if self._dent_depth < 0:
+            raise ValueError("Calculated dent depth is negative. Check the nominal radius and data for correctness.")
         self._dent_depth_percent = (self._dent_depth / OD) * 100
+
+    def _measure_data(self,
+                      percentages_axial: list,
+                      percentages_circ: list,
+                      percentages_area: list, 
+                      file_path: str | None):
         # Determine the baseline index and radii for all four quadrants (index, radius)
         self._baseline_us = self.get_baseline(self._axial_us, axial_circ="axial")
-        self._baseline_ds = self.get_baseline(self._axial_ds, axial_circ="axial", outbound_data=True, slope_tolerance=0.004)
+        self._baseline_ds = self.get_baseline(self._axial_ds, axial_circ="axial")
         # The Circumferential baselines will use the US and DS axial baselines. But will need to find the index in the circumferential profile
         self._baseline_us_ccw = self.get_baseline_circ(self._circ_ccw, self._baseline_us[2])
         self._baseline_us_cw = self.get_baseline_circ(self._circ_cw, self._baseline_us[2], outbound_data=True)
@@ -391,21 +332,32 @@ class DentProfiles:
         self._results_circ_ds_cw = self.get_measurements(self._circ_cw, self._dent_depth_ds_cw, self._circ_min, self._baseline_ds_cw, percentages_circ, percentages_area, outbound_data=True)
         # Create three figures
         if file_path is not None:
-            self.create_figure("Axial", self._axial_us, self._axial_ds, self._results_axial_us, self._results_axial_ds, self._axial_min, file_path)
-            self.create_figure("Circ_US", self._circ_ccw, self._circ_cw, self._results_circ_us_ccw, self._results_circ_us_cw, self._circ_min, file_path)
-            self.create_figure("Circ_DS", self._circ_ccw, self._circ_cw, self._results_circ_ds_ccw, self._results_circ_ds_cw, self._circ_min, file_path)
-    def graph(self, quadrant: str):
+            self.create_lengths_figure("Axial", self._axial_us, self._axial_ds, self._results_axial_us, self._results_axial_ds, self._axial_min, file_path)
+            self.create_lengths_figure("Circ_US", self._circ_ccw, self._circ_cw, self._results_circ_us_ccw, self._results_circ_us_cw, self._circ_min, file_path)
+            self.create_lengths_figure("Circ_DS", self._circ_ccw, self._circ_cw, self._results_circ_ds_ccw, self._results_circ_ds_cw, self._circ_min, file_path)
+    
+    def graph_lengths(self, quadrant: str):
         """Generate and return a matplotlib Figure for the specified quadrant ('Axial', 'Circ_US', 'Circ_DS')."""
         """Generate and return a matplotlib Figure for the specified quadrant ('Axial', 'Circ_US', 'Circ_DS')."""
         if quadrant == "Axial":
-            self.create_figure("Axial", self._axial_us, self._axial_ds, self._results_axial_us, self._results_axial_ds, self._axial_min)
+            self.create_lengths_figure("Axial", self._axial_us, self._axial_ds, self._results_axial_us, self._results_axial_ds, self._axial_min)
         elif quadrant == "Circ_US":
-            self.create_figure("Circ_US", self._circ_ccw, self._circ_cw, self._results_circ_us_ccw, self._results_circ_us_cw, self._circ_min)
+            self.create_lengths_figure("Circ_US", self._circ_ccw, self._circ_cw, self._results_circ_us_ccw, self._results_circ_us_cw, self._circ_min)
         elif quadrant == "Circ_DS":
-            self.create_figure("Circ_DS", self._circ_ccw, self._circ_cw, self._results_circ_ds_ccw, self._results_circ_ds_cw, self._circ_min)
+            self.create_lengths_figure("Circ_DS", self._circ_ccw, self._circ_cw, self._results_circ_ds_ccw, self._results_circ_ds_cw, self._circ_min)
         else:
             raise ValueError("Invalid quadrant specified. Choose from 'Axial', 'Circ_US', 'Circ_DS'.")
     
+    def change_baseline(self,
+                        slope_tolerance_us: float = 0.003,
+                        slope_tolerance_ds: float = 0.004,
+                        closeness_percentage: float = 5.0):
+        """Recalculate the baseline radii using new slope tolerance and closeness percentage."""
+        self._measure_data(self.percentages_axial,
+                           self.percentages_circ,
+                           self.percentages_area,
+                           self.file_path)
+
     @property
     def min_idx(self) -> tuple[int, int]:
         """Tuple of (Axial index, Circumferential index) of the deepest point."""
@@ -551,15 +503,15 @@ class DentProfiles:
         """DS Circumferential CW Areas for all percentages."""
         return list(self._results_circ_ds_cw["areas"].values())
 
-    def get_nominal(self, expected_nominal: float, threshold: float = 0.05, ignore_edge: float = 0.1) -> float:
+    def get_nominal(self, expected_nominal: float, threshold: float = 0.01, ignore_edge: float = 0.1) -> float:
         """
         Determine the nominal radius from the profile data.
 
         Parameters
         ----------
-        expected_nominal : float, optional
+        expected_nominal : float
             Expected nominal radius to validate against.
-        threshold : float, optional (default=0.05)
+        threshold : float, optional (default=0.01)
             Maximum allowed deviation from expected_nominal, as a fraction of the expected value.
         ignore_edge : float, optional (default=0.1)
             Fraction of data to ignore at each edge when determining nominal radius.
@@ -583,13 +535,7 @@ class DentProfiles:
                      axial_circ: str = "axial", 
                      axial_default: float = 0.025, 
                      circ_default: float = -0.15,
-                     window_size: int = 11,
-                     slope_tolerance: float = 0.003,
-                     closeness_percentage: float = 5,
-                     buffer_offset: int = 5,
-                     min_consecutive_deviations: int = 3,
-                     circumferential_mode: bool = False,
-                     outbound_data: bool = False) -> tuple[int, float, float]:
+                     **kwargs) -> tuple[int, float, float]:
         """
         Determine the baseline radius which will be the reference line for all calculations. This can either be a fixed
         offset from the nominal radius or determined from the changing slope in the profile.
@@ -604,21 +550,6 @@ class DentProfiles:
             Default value for the axial profile baseline (default is 2.5%).
         circ_default : float
             Default value for the circumferential profile baseline (default is -15%).
-        window_size : int, optional (default=11)
-            Window for Savitzky-Golay filter to smooth derivatives.
-        slope_tolerance : float, optional (default=0.003)
-            Slope threshold for pristine sections or local maxima.
-        closeness_percentage : float, optional (default=5)
-            Percentage tolerance for radius closeness to nominal.
-        buffer_offset : int, optional (default=5)
-            Points to subtract from start index for preceding data.
-        min_consecutive_deviations : int, optional (default=3)
-            Minimum consecutive deviations (default mode) or consecutive points at local maximum (circumferential mode).
-        circumferential_mode : bool, optional (default=False)
-            If True, detects deflection at the first local maximum (slope ≈ 0) near nominal radius. If False, uses sustained deviation.
-        outbound_data : bool, optional (default=False)
-            If False, includes inbound data points for baseline determination. If True, reverses the data to treat it as inbound.
-            - Guidance: Ensure data direction matches this flag. Reverse if necessary.
 
         Returns
         -------
@@ -639,7 +570,7 @@ class DentProfiles:
             baseline_default = self._nominal_radius - axial_default * self._dent_depth
 
         # Calculate the baseline radius from the profile data
-        baseline_index, baseline_axial, baseline_val = find_deflection(data, self._nominal_radius, window_size=window_size, slope_tolerance=slope_tolerance, closeness_percentage=closeness_percentage, buffer_offset=buffer_offset, min_consecutive_deviations=min_consecutive_deviations, circumferential_mode=circumferential_mode, outbound_data=outbound_data)
+        baseline_index, baseline_axial, baseline_val = find_deflection(data, **kwargs)
 
         if baseline_index is not None and baseline_axial is not None and baseline_val is not None:
             return baseline_index, baseline_axial, baseline_val
@@ -820,7 +751,7 @@ class DentProfiles:
 
         return {"lengths": lengths, "areas": cum_areas}
 
-    def create_figure(self, 
+    def create_lengths_figure(self, 
                       quadrant: str, 
                       profile_us: pd.Series, 
                       profile_ds: pd.Series, 
@@ -873,8 +804,11 @@ class DentProfiles:
             data_label2 = ["US-CCW","DS-CW"]
 
         fig, ax = plt.subplots(figsize=(12, 5))
-        ax.plot(profile_us.index, profile_us, label=us_label, color=palette[0])
-        ax.plot(profile_ds.index, profile_ds, label=ds_label, color=palette[1], linestyle='--')
+        ax.plot(profile_us.index, profile_us, label=us_label, color="#000000")
+        ax.plot(profile_ds.index, profile_ds, label=ds_label, color="#ff0000", linestyle='--')
+
+        # Plot the nominal radius line
+        # ax.axhline(y=self._nominal_radius, color='gray', linestyle=':', linewidth=1, label='Nominal Radius')
 
         for i, (p, vals) in enumerate(results_us["lengths"].items()):
             ax.plot([vals["position"], dent_location], [vals["radius"], vals["radius"]], color=palette[(2+i)%len(palette)], linestyle='-', linewidth=1, label=f'{data_label}{p}% {data_label2[0]}')
@@ -891,3 +825,19 @@ class DentProfiles:
             fig.savefig(str(file_path).replace('.xlsx', f'_{quadrant}_Lengths.png'), dpi=300)
             plt.close(fig)
         
+    def graph_contours(self, file_path: str | None = None, palette: str = 'viridis'):
+        """
+        Create a matplotlib figure showing the dent contour with the minimum point highlighted.
+        """
+        fig, ax = plt.subplots(figsize=(12, 5))
+        c = ax.contourf(self._df.index, self._df.columns, self._df.values.T, cmap=palette)
+        fig.colorbar(c, ax=ax, label='Radius (in)')
+        ax.plot(self._axial_min, self._circ_min, 'ro', label='Dent Minimum')
+        ax.set_title('Dent Contour')
+        ax.set_ylabel('Circumferential Position (deg)')
+        ax.set_xlabel('Axial Position (in)')
+        ax.legend()
+        fig.tight_layout()
+        if file_path:
+            fig.savefig(str(file_path).replace('.xlsx', '_Dent_Contour.png'), dpi=300)
+            plt.close(fig)
