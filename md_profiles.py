@@ -187,9 +187,9 @@ class DentProfiles:
                  OD: float, 
                  WT: float, 
                  ignore_edge: float = 0.1,
-                 percentages_axial: list[int] = [95, 90, 85, 75, 60, 50, 40, 30, 20, 15, 10, 5],
-                 percentages_circ: list[int] = [90, 85, 80, 75, 70, 60, 50, 40, 30, 20, 15, 10],
-                 percentages_area: list[int] = [85, 75, 60, 50, 40, 30, 20, 15, 10],
+                 percentages_axial: list[float] = [95, 90, 85, 75, 60, 50, 40, 30, 20, 15, 10, 5],
+                 percentages_circ: list[float] = [90, 85, 80, 75, 70, 60, 50, 40, 30, 20, 15, 10],
+                 percentages_area: list[float] = [85, 75, 60, 50, 40, 30, 20, 15, 10],
                  file_path: str | None = None
                  ):
         """
@@ -337,8 +337,7 @@ class DentProfiles:
             self.create_lengths_figure("Circ_DS", self._circ_ccw, self._circ_cw, self._results_circ_ds_ccw, self._results_circ_ds_cw, self._circ_min, file_path)
     
     def graph_lengths(self, quadrant: str):
-        """Generate and return a matplotlib Figure for the specified quadrant ('Axial', 'Circ_US', 'Circ_DS')."""
-        """Generate and return a matplotlib Figure for the specified quadrant ('Axial', 'Circ_US', 'Circ_DS')."""
+        """Generate and display a matplotlib Figure for the specified quadrant ('Axial', 'Circ_US', 'Circ_DS')."""
         if quadrant == "Axial":
             self.create_lengths_figure("Axial", self._axial_us, self._axial_ds, self._results_axial_us, self._results_axial_ds, self._axial_min)
         elif quadrant == "Circ_US":
@@ -348,15 +347,368 @@ class DentProfiles:
         else:
             raise ValueError("Invalid quadrant specified. Choose from 'Axial', 'Circ_US', 'Circ_DS'.")
     
-    def change_baseline(self,
-                        slope_tolerance_us: float = 0.003,
-                        slope_tolerance_ds: float = 0.004,
-                        closeness_percentage: float = 5.0):
-        """Recalculate the baseline radii using new slope tolerance and closeness percentage."""
-        self._measure_data(self.percentages_axial,
-                           self.percentages_circ,
-                           self.percentages_area,
-                           self.file_path)
+    def get_profile_data(self, quadrant: str) -> tuple[pd.Series, tuple[int, float, float]] | None:
+        """
+        Get the profile data and baseline information for a specific quadrant.
+        Useful for GUI applications that need to display and interact with profile data.
+        
+        Parameters
+        ----------
+        quadrant : str
+            The quadrant to retrieve. Options: "US", "DS", "US_CCW", "US_CW", "DS_CCW", "DS_CW"
+            
+        Returns
+        -------
+        tuple or None
+            Tuple of (profile_data: pd.Series, baseline: tuple[index, position, radius])
+            Returns None if invalid quadrant specified.
+        """
+        data_map = {
+            "US": (self._axial_us, self._baseline_us),
+            "DS": (self._axial_ds, self._baseline_ds),
+            "US_CCW": (self._circ_ccw, self._baseline_us_ccw),
+            "US_CW": (self._circ_cw, self._baseline_us_cw),
+            "DS_CCW": (self._circ_ccw, self._baseline_ds_ccw),
+            "DS_CW": (self._circ_cw, self._baseline_ds_cw),
+        }
+        
+        quadrant_upper = quadrant.upper()
+        if quadrant_upper not in data_map:
+            return None
+            
+        return data_map[quadrant_upper]
+    
+    def set_baseline_by_index(self, quadrant: str, index: int) -> bool:
+        """
+        Manually set the baseline for a specific quadrant using an index position.
+        
+        Parameters
+        ----------
+        quadrant : str
+            The quadrant to update. Options: "US", "DS", "US_CCW", "US_CW", "DS_CCW", "DS_CW"
+        index : int
+            The index in the profile data to use as the new baseline.
+            
+        Returns
+        -------
+        bool
+            True if baseline was successfully updated, False otherwise.
+        """
+        try:
+            if quadrant.upper() == "US":
+                if index < 0 or index >= len(self._axial_us):
+                    return False
+                axial_pos = float(self._axial_us.index[index])
+                radius = float(self._axial_us.iloc[index])
+                self._baseline_us = (index, axial_pos, radius)
+                self._dent_depth_us = radius - self._radius_min
+                # Update circumferential baselines that depend on US
+                self._baseline_us_ccw = self.get_baseline_circ(self._circ_ccw, radius)
+                self._baseline_us_cw = self.get_baseline_circ(self._circ_cw, radius, outbound_data=True)
+                self._dent_depth_us_ccw = self._baseline_us_ccw[2] - self._radius_min
+                self._dent_depth_us_cw = self._baseline_us_cw[2] - self._radius_min
+                
+            elif quadrant.upper() == "DS":
+                if index < 0 or index >= len(self._axial_ds):
+                    return False
+                axial_pos = float(self._axial_ds.index[index])
+                radius = float(self._axial_ds.iloc[index])
+                self._baseline_ds = (index, axial_pos, radius)
+                self._dent_depth_ds = radius - self._radius_min
+                # Update circumferential baselines that depend on DS
+                self._baseline_ds_ccw = self.get_baseline_circ(self._circ_ccw, radius)
+                self._baseline_ds_cw = self.get_baseline_circ(self._circ_cw, radius, outbound_data=True)
+                self._dent_depth_ds_ccw = self._baseline_ds_ccw[2] - self._radius_min
+                self._dent_depth_ds_cw = self._baseline_ds_cw[2] - self._radius_min
+                
+            elif quadrant.upper() == "US_CCW":
+                if index < 0 or index >= len(self._circ_ccw):
+                    return False
+                circ_pos = float(self._circ_ccw.index[index])
+                radius = float(self._circ_ccw.iloc[index])
+                self._baseline_us_ccw = (index, circ_pos, radius)
+                self._dent_depth_us_ccw = radius - self._radius_min
+                
+            elif quadrant.upper() == "US_CW":
+                if index < 0 or index >= len(self._circ_cw):
+                    return False
+                circ_pos = float(self._circ_cw.index[index])
+                radius = float(self._circ_cw.iloc[index])
+                self._baseline_us_cw = (index, circ_pos, radius)
+                self._dent_depth_us_cw = radius - self._radius_min
+                
+            elif quadrant.upper() == "DS_CCW":
+                if index < 0 or index >= len(self._circ_ccw):
+                    return False
+                circ_pos = float(self._circ_ccw.index[index])
+                radius = float(self._circ_ccw.iloc[index])
+                self._baseline_ds_ccw = (index, circ_pos, radius)
+                self._dent_depth_ds_ccw = radius - self._radius_min
+                
+            elif quadrant.upper() == "DS_CW":
+                if index < 0 or index >= len(self._circ_cw):
+                    return False
+                circ_pos = float(self._circ_cw.index[index])
+                radius = float(self._circ_cw.iloc[index])
+                self._baseline_ds_cw = (index, circ_pos, radius)
+                self._dent_depth_ds_cw = radius - self._radius_min
+            else:
+                return False
+                
+            return True
+        except Exception:
+            return False
+    
+    def set_baseline_by_position(self, quadrant: str, position: float) -> bool:
+        """
+        Manually set the baseline for a specific quadrant using an axial or circumferential position.
+        The function will find the closest data point to the specified position.
+        
+        Parameters
+        ----------
+        quadrant : str
+            The quadrant to update. Options: "US", "DS", "US_CCW", "US_CW", "DS_CCW", "DS_CW"
+        position : float
+            The axial (inches) or circumferential (degrees) position to use as the new baseline.
+            
+        Returns
+        -------
+        bool
+            True if baseline was successfully updated, False otherwise.
+        """
+        try:
+            if quadrant.upper() == "US":
+                closest_idx = int(abs(self._axial_us.index - position).argmin()) # type: ignore
+                return self.set_baseline_by_index(quadrant, closest_idx)
+                
+            elif quadrant.upper() == "DS":
+                closest_idx = int(abs(self._axial_ds.index - position).argmin()) # type: ignore
+                return self.set_baseline_by_index(quadrant, closest_idx)
+                
+            elif quadrant.upper() in ["US_CCW", "DS_CCW"]:
+                closest_idx = int(abs(self._circ_ccw.index - position).argmin()) # type: ignore
+                return self.set_baseline_by_index(quadrant, closest_idx)
+                
+            elif quadrant.upper() in ["US_CW", "DS_CW"]:
+                closest_idx = int(abs(self._circ_cw.index - position).argmin()) # type: ignore
+                return self.set_baseline_by_index(quadrant, closest_idx)
+            else:
+                return False
+        except Exception:
+            return False
+    
+    def set_baseline_by_radius(self, quadrant: str, radius: float, search_direction: str = "outward") -> bool:
+        """
+        Manually set the baseline for a specific quadrant by finding the nearest point with the specified radius.
+        
+        Parameters
+        ----------
+        quadrant : str
+            The quadrant to update. Options: "US", "DS", "US_CCW", "US_CW", "DS_CCW", "DS_CW"
+        radius : float
+            The target radius value (inches) to find in the profile.
+        search_direction : str, optional
+            Direction to search from dent minimum. "outward" (default) searches away from dent,
+            "inward" searches toward dent.
+            
+        Returns
+        -------
+        bool
+            True if baseline was successfully updated, False otherwise.
+        """
+        try:
+            if quadrant.upper() == "US":
+                data = self._axial_us if search_direction == "outward" else self._axial_us.iloc[::-1]
+                closest_idx = int((data - radius).abs().argmin())
+                # Convert back to original indexing if reversed
+                if search_direction != "outward":
+                    closest_idx = len(self._axial_us) - 1 - closest_idx
+                return self.set_baseline_by_index(quadrant, closest_idx)
+                
+            elif quadrant.upper() == "DS":
+                data = self._axial_ds if search_direction == "outward" else self._axial_ds.iloc[::-1]
+                closest_idx = int((data - radius).abs().argmin())
+                if search_direction != "outward":
+                    closest_idx = len(self._axial_ds) - 1 - closest_idx
+                return self.set_baseline_by_index(quadrant, closest_idx)
+                
+            elif quadrant.upper() in ["US_CCW", "DS_CCW"]:
+                data = self._circ_ccw if search_direction == "outward" else self._circ_ccw.iloc[::-1]
+                closest_idx = int((data - radius).abs().argmin())
+                if search_direction != "outward":
+                    closest_idx = len(self._circ_ccw) - 1 - closest_idx
+                return self.set_baseline_by_index(quadrant, closest_idx)
+                
+            elif quadrant.upper() in ["US_CW", "DS_CW"]:
+                data = self._circ_cw if search_direction == "outward" else self._circ_cw.iloc[::-1]
+                closest_idx = int((data - radius).abs().argmin())
+                if search_direction != "outward":
+                    closest_idx = len(self._circ_cw) - 1 - closest_idx
+                return self.set_baseline_by_index(quadrant, closest_idx)
+            else:
+                return False
+        except Exception:
+            return False
+    
+    def recalculate_measurements(self, quadrants: list[str] | None = None):
+        """
+        Recalculate all measurements (lengths and areas) after baseline changes.
+        
+        Parameters
+        ----------
+        quadrants : list of str, optional
+            List of quadrants to recalculate. If None, recalculates all quadrants.
+            Options: ["US", "DS", "US_CCW", "US_CW", "DS_CCW", "DS_CW"]
+        """
+        if quadrants is None:
+            quadrants = ["US", "DS", "US_CCW", "US_CW", "DS_CCW", "DS_CW"]
+        
+        for quadrant in quadrants:
+            if quadrant.upper() == "US":
+                self._results_axial_us = self.get_measurements(
+                    self._axial_us, self._dent_depth_us, self._axial_min, 
+                    self._baseline_us, self.percentages_axial, self.percentages_area
+                )
+            elif quadrant.upper() == "DS":
+                self._results_axial_ds = self.get_measurements(
+                    self._axial_ds, self._dent_depth_ds, self._axial_min, 
+                    self._baseline_ds, self.percentages_axial, self.percentages_area, 
+                    outbound_data=True
+                )
+            elif quadrant.upper() == "US_CCW":
+                self._results_circ_us_ccw = self.get_measurements(
+                    self._circ_ccw, self._dent_depth_us_ccw, self._circ_min, 
+                    self._baseline_us_ccw, self.percentages_circ, self.percentages_area
+                )
+            elif quadrant.upper() == "US_CW":
+                self._results_circ_us_cw = self.get_measurements(
+                    self._circ_cw, self._dent_depth_us_cw, self._circ_min, 
+                    self._baseline_us_cw, self.percentages_circ, self.percentages_area, 
+                    outbound_data=True
+                )
+            elif quadrant.upper() == "DS_CCW":
+                self._results_circ_ds_ccw = self.get_measurements(
+                    self._circ_ccw, self._dent_depth_ds_ccw, self._circ_min, 
+                    self._baseline_ds_ccw, self.percentages_circ, self.percentages_area
+                )
+            elif quadrant.upper() == "DS_CW":
+                self._results_circ_ds_cw = self.get_measurements(
+                    self._circ_cw, self._dent_depth_ds_cw, self._circ_min, 
+                    self._baseline_ds_cw, self.percentages_circ, self.percentages_area, 
+                    outbound_data=True
+                )
+    
+    def get_baseline_info(self, quadrant: str) -> dict | None:
+        """
+        Get current baseline information for a specific quadrant.
+        
+        Parameters
+        ----------
+        quadrant : str
+            The quadrant to query. Options: "US", "DS", "US_CCW", "US_CW", "DS_CCW", "DS_CW"
+            
+        Returns
+        -------
+        dict or None
+            Dictionary with keys: 'index', 'position', 'radius', 'dent_depth'
+            Returns None if invalid quadrant specified.
+        """
+        baseline_map = {
+            "US": (self._baseline_us, self._dent_depth_us),
+            "DS": (self._baseline_ds, self._dent_depth_ds),
+            "US_CCW": (self._baseline_us_ccw, self._dent_depth_us_ccw),
+            "US_CW": (self._baseline_us_cw, self._dent_depth_us_cw),
+            "DS_CCW": (self._baseline_ds_ccw, self._dent_depth_ds_ccw),
+            "DS_CW": (self._baseline_ds_cw, self._dent_depth_ds_cw),
+        }
+        
+        quadrant_upper = quadrant.upper()
+        if quadrant_upper not in baseline_map:
+            return None
+            
+        baseline, dent_depth = baseline_map[quadrant_upper]
+        return {
+            'index': baseline[0],
+            'position': baseline[1],
+            'radius': baseline[2],
+            'dent_depth': dent_depth
+        }
+    
+    def validate_baseline(self, quadrant: str, index: int) -> dict:
+        """
+        Validate if a proposed baseline index is reasonable without applying it.
+        
+        Parameters
+        ----------
+        quadrant : str
+            The quadrant to validate. Options: "US", "DS", "US_CCW", "US_CW", "DS_CCW", "DS_CW"
+        index : int
+            The proposed index to validate.
+            
+        Returns
+        -------
+        dict
+            Dictionary with keys:
+            - 'valid': bool indicating if the baseline is valid
+            - 'reason': str with explanation if invalid
+            - 'radius': float with radius at that index
+            - 'dent_depth': float with resulting dent depth
+        """
+        result = {'valid': False, 'reason': '', 'radius': None, 'dent_depth': None}
+        
+        try:
+            # Get the appropriate data series
+            data_map = {
+                "US": self._axial_us,
+                "DS": self._axial_ds,
+                "US_CCW": self._circ_ccw,
+                "US_CW": self._circ_cw,
+                "DS_CCW": self._circ_ccw,
+                "DS_CW": self._circ_cw,
+            }
+            
+            quadrant_upper = quadrant.upper()
+            if quadrant_upper not in data_map:
+                result['reason'] = 'Invalid quadrant specified'
+                return result
+                
+            data = data_map[quadrant_upper]
+            
+            # Check index bounds
+            if index < 0 or index >= len(data):
+                result['reason'] = f'Index {index} out of bounds [0, {len(data)-1}]'
+                return result
+            
+            radius = float(data.iloc[index])
+            result['radius'] = radius
+            
+            # Calculate resulting dent depth
+            dent_depth = radius - self._radius_min
+            result['dent_depth'] = dent_depth
+            
+            # Validate that radius is greater than minimum
+            if radius <= self._radius_min:
+                result['reason'] = f'Baseline radius ({radius:.4f}) must be greater than dent minimum ({self._radius_min:.4f})'
+                return result
+            
+            # Validate that radius is not too far from nominal (e.g., within 20% of nominal)
+            if radius > self._nominal_radius * 1.2:
+                result['reason'] = f'Baseline radius ({radius:.4f}) is unreasonably high (>120% of nominal: {self._nominal_radius:.4f})'
+                return result
+            
+            # Validate that dent depth is reasonable (positive)
+            if dent_depth <= 0:
+                result['reason'] = f'Resulting dent depth ({dent_depth:.4f}) must be positive'
+                return result
+            
+            result['valid'] = True
+            result['reason'] = 'Baseline is valid'
+            return result
+            
+        except Exception as e:
+            result['reason'] = f'Error during validation: {str(e)}'
+            return result
+        
 
     @property
     def min_idx(self) -> tuple[int, int]:
