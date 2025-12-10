@@ -1082,6 +1082,7 @@ class DentProfiles:
             return self._rp[quadrant_upper]
         else:
             raise ValueError(f"Quadrant '{quadrant}' not found in restraint parameters. Choose from {quadrant_options} or None for all quadrants.")
+    
     @property
     def min_idx(self) -> tuple[int, int]:
         """Tuple of (Axial index, Circumferential index) of the deepest point."""
