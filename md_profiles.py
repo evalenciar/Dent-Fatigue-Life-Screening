@@ -217,13 +217,20 @@ class DentProfiles:
         file_path : str or None, optional
             If provided, path to save the generated figures.
         """
-        self.percentages_axial = percentages_axial
-        self.percentages_circ = percentages_circ
-        self.percentages_area = percentages_area
-        self.file_path = file_path
+        self._df = df
+        self._OD = OD
+        self._WT = WT
+        self._expected_nominal = OD/2 - WT
+        self._equal_baseline = equal_baseline
+        self._ignore_edge = ignore_edge
 
-        self._prepare_data(df, OD, WT, ignore_edge)
-        self._measure_data(equal_baseline, percentages_axial, percentages_circ, percentages_area, file_path)
+        self._percentages_axial = percentages_axial
+        self._percentages_circ = percentages_circ
+        self._percentages_area = percentages_area
+        self._file_path = file_path
+
+        self._prepare_data()
+        self._measure_data()
         self._calculate_results()
 
     def __repr__(self):
@@ -278,27 +285,19 @@ class DentProfiles:
             # Insert the Restraint Parameters here
             f"-----------\n"
             f"Restraint Parameters:\n"
-            f" - US_CCW: {round(self._rp['US_CCW'], 3)}\n"
-            f" - US_CW: {round(self._rp['US_CW'], 3)}\n"
-            f" - DS_CCW: {round(self._rp['DS_CCW'], 3)}\n"
-            f" - DS_CW: {round(self._rp['DS_CW'], 3)}\n"
+            f" - US_CCW: {round(self._rp['US_CCW'], 3):>8.3f}\n"
+            f" - US_CW:  {round(self._rp['US_CW'], 3):>8.3f}\n"
+            f" - DS_CCW: {round(self._rp['DS_CCW'], 3):>8.3f}\n"
+            f" - DS_CW:  {round(self._rp['DS_CW'], 3):>8.3f}\n"
             f"\n"
         )
         return return_string
 
-    def _prepare_data(self, 
-                      df: pd.DataFrame, 
-                      OD: float, 
-                      WT: float, 
-                      ignore_edge: float):
-        self._df = df
-        self._OD = OD
-        self._WT = WT
-        self._expected_nominal = OD/2 - WT
+    def _prepare_data(self):
         # Locate the deepest point, using the ignore_edge parameter to avoid edge effects
-        start_idx = math.ceil(df.shape[0]*ignore_edge)
-        end_idx = math.floor(df.shape[0]*(1-ignore_edge))
-        df_trim = df.iloc[start_idx:end_idx, :]
+        start_idx = math.ceil(self._df.shape[0]*self._ignore_edge)
+        end_idx = math.floor(self._df.shape[0]*(1-self._ignore_edge))
+        df_trim = self._df.iloc[start_idx:end_idx, :]
         min_idx = df_trim.stack().idxmin()
         if isinstance(min_idx, tuple):
             self._axial_min, self._circ_min = float(min_idx[0]), float(min_idx[1])
@@ -318,25 +317,17 @@ class DentProfiles:
         self._circ_ccw = pd.Series(self._circ_profile.loc[:self._circ_min]) # type: ignore
         self._circ_cw = pd.Series(self._circ_profile.loc[self._circ_min:]) # type: ignore
         # Determine the nominal internal radius
-        self._nominal_radius = self.get_nominal(expected_nominal=self._expected_nominal, ignore_edge=ignore_edge)
+        self._nominal_radius = self.get_nominal(expected_nominal=self._expected_nominal, ignore_edge=self._ignore_edge)
         self._dent_depth = self._nominal_radius - self._radius_min
         # Ensure that dent depth is non-negative
         if self._dent_depth < 0:
             raise ValueError("Calculated dent depth is negative. Check the nominal radius and data for correctness.")
-        self._dent_depth_percent = (self._dent_depth / OD) * 100
+        self._dent_depth_percent = (self._dent_depth / self._OD) * 100
 
-    def _measure_data(self,
-                      equal_baseline: bool,
-                      percentages_axial: list,
-                      percentages_circ: list,
-                      percentages_area: list, 
-                      file_path: str | None):
+    def _measure_data(self):
         # Determine the baseline index and radii for all four quadrants (index, radius)
         self._baseline_us = self.get_baseline(self._axial_us, axial_circ="axial")
         self._baseline_ds = self.get_baseline(self._axial_ds, axial_circ="axial")
-        # If equal_baseline is True, set DS baseline to US baseline
-        if equal_baseline:
-            self._baseline_ds = self._baseline_us
         # The Circumferential baselines will use the US and DS axial baselines. But will need to find the index in the circumferential profile
         self._baseline_us_ccw = self.get_baseline_circ(self._circ_ccw, self._baseline_us[2])
         self._baseline_us_cw = self.get_baseline_circ(self._circ_cw, self._baseline_us[2], outbound_data=True)
@@ -349,18 +340,26 @@ class DentProfiles:
         self._dent_depth_us_cw = self._baseline_us_cw[2] - self._radius_min
         self._dent_depth_ds_ccw = self._baseline_ds_ccw[2] - self._radius_min
         self._dent_depth_ds_cw = self._baseline_ds_cw[2] - self._radius_min
+        # If equal_baseline is True, find the DS baseline matching the US baseline radius
+        if self._equal_baseline:
+            confirmation = self.set_baseline_by_radius("DS", self._baseline_us[2], search_direction="outward")
+            if not confirmation:
+                # Attempt to make US match DS instead
+                confirmation = self.set_baseline_by_radius("US", self._baseline_ds[2], search_direction="outward")
+                if not confirmation:
+                    raise ValueError("Unable to set equal baselines between US and DS segments.")
         # Iterate through all four quadrants to determine lengths and areas
-        self._results_axial_us = self.get_measurements(self._axial_us, self._dent_depth_us, self._axial_min, self._baseline_us, percentages_axial, percentages_area)
-        self._results_axial_ds = self.get_measurements(self._axial_ds, self._dent_depth_ds, self._axial_min, self._baseline_ds, percentages_axial, percentages_area, outbound_data=True)
-        self._results_circ_us_ccw = self.get_measurements(self._circ_ccw, self._dent_depth_us_ccw, self._circ_min, self._baseline_us_ccw, percentages_circ, percentages_area)
-        self._results_circ_us_cw = self.get_measurements(self._circ_cw, self._dent_depth_us_cw, self._circ_min, self._baseline_us_cw, percentages_circ, percentages_area, outbound_data=True)
-        self._results_circ_ds_ccw = self.get_measurements(self._circ_ccw, self._dent_depth_ds_ccw, self._circ_min, self._baseline_ds_ccw, percentages_circ, percentages_area)
-        self._results_circ_ds_cw = self.get_measurements(self._circ_cw, self._dent_depth_ds_cw, self._circ_min, self._baseline_ds_cw, percentages_circ, percentages_area, outbound_data=True)
+        self._results_axial_us = self.get_measurements(self._axial_us, self._dent_depth_us, self._axial_min, self._baseline_us, self._percentages_axial, self._percentages_area)
+        self._results_axial_ds = self.get_measurements(self._axial_ds, self._dent_depth_ds, self._axial_min, self._baseline_ds, self._percentages_axial, self._percentages_area, outbound_data=True)
+        self._results_circ_us_ccw = self.get_measurements(self._circ_ccw, self._dent_depth_us_ccw, self._circ_min, self._baseline_us_ccw, self._percentages_circ, self._percentages_area)
+        self._results_circ_us_cw = self.get_measurements(self._circ_cw, self._dent_depth_us_cw, self._circ_min, self._baseline_us_cw, self._percentages_circ, self._percentages_area, outbound_data=True)
+        self._results_circ_ds_ccw = self.get_measurements(self._circ_ccw, self._dent_depth_ds_ccw, self._circ_min, self._baseline_ds_ccw, self._percentages_circ, self._percentages_area)
+        self._results_circ_ds_cw = self.get_measurements(self._circ_cw, self._dent_depth_ds_cw, self._circ_min, self._baseline_ds_cw, self._percentages_circ, self._percentages_area, outbound_data=True)
         # Create three figures
-        if file_path is not None:
-            self.create_lengths_figure("Axial", self._axial_us, self._axial_ds, self._results_axial_us, self._results_axial_ds, self._axial_min, file_path)
-            self.create_lengths_figure("Circ_US", self._circ_ccw, self._circ_cw, self._results_circ_us_ccw, self._results_circ_us_cw, self._circ_min, file_path)
-            self.create_lengths_figure("Circ_DS", self._circ_ccw, self._circ_cw, self._results_circ_ds_ccw, self._results_circ_ds_cw, self._circ_min, file_path)
+        if self._file_path is not None:
+            self.create_lengths_figure("Axial", self._axial_us, self._axial_ds, self._results_axial_us, self._results_axial_ds, self._axial_min, self._file_path)
+            self.create_lengths_figure("Circ_US", self._circ_ccw, self._circ_cw, self._results_circ_us_ccw, self._results_circ_us_cw, self._circ_min, self._file_path)
+            self.create_lengths_figure("Circ_DS", self._circ_ccw, self._circ_cw, self._results_circ_ds_ccw, self._results_circ_ds_cw, self._circ_min, self._file_path)
     
     def _calculate_results(self):
         self._rp = {
@@ -563,6 +562,14 @@ class DentProfiles:
                 return False
         except Exception:
             return False
+        
+    def reset_baselines(self):
+        """
+        Reset the baselines for all quadrants to their original calculated values.
+        """
+        self._prepare_data()
+        self._measure_data()
+        self._calculate_results()
     
     def recalculate_measurements(self, US_DS: list[str] | None = None):
         """
@@ -582,35 +589,35 @@ class DentProfiles:
                 # US Axial
                 self._results_axial_us = self.get_measurements(
                     self._axial_us, self._dent_depth_us, self._axial_min, 
-                    self._baseline_us, self.percentages_axial, self.percentages_area
+                    self._baseline_us, self._percentages_axial, self._percentages_area
                 )
                 # US CCW
                 self._results_circ_us_ccw = self.get_measurements(
                     self._circ_ccw, self._dent_depth_us_ccw, self._circ_min, 
-                    self._baseline_us_ccw, self.percentages_circ, self.percentages_area
+                    self._baseline_us_ccw, self._percentages_circ, self._percentages_area
                 )
                 # US CW
                 self._results_circ_us_cw = self.get_measurements(
                     self._circ_cw, self._dent_depth_us_cw, self._circ_min, 
-                    self._baseline_us_cw, self.percentages_circ, self.percentages_area, 
+                    self._baseline_us_cw, self._percentages_circ, self._percentages_area, 
                     outbound_data=True
                 )
             elif segment.upper() == "DS":
                 # DS Axial
                 self._results_axial_ds = self.get_measurements(
                     self._axial_ds, self._dent_depth_ds, self._axial_min, 
-                    self._baseline_ds, self.percentages_axial, self.percentages_area, 
+                    self._baseline_ds, self._percentages_axial, self._percentages_area, 
                     outbound_data=True
                 )
                 # DS CCW
                 self._results_circ_ds_ccw = self.get_measurements(
                     self._circ_ccw, self._dent_depth_ds_ccw, self._circ_min, 
-                    self._baseline_ds_ccw, self.percentages_circ, self.percentages_area
+                    self._baseline_ds_ccw, self._percentages_circ, self._percentages_area
                 )
                 # DS CW
                 self._results_circ_ds_cw = self.get_measurements(
                     self._circ_cw, self._dent_depth_ds_cw, self._circ_min, 
-                    self._baseline_ds_cw, self.percentages_circ, self.percentages_area, 
+                    self._baseline_ds_cw, self._percentages_circ, self._percentages_area, 
                     outbound_data=True
                 )
             else:
@@ -724,163 +731,6 @@ class DentProfiles:
         except Exception as e:
             result['reason'] = f'Error during validation: {str(e)}'
             return result
-    @property
-    def rp(self, quadrant: str | None = None) -> float | dict:
-        """Calculate the Restraint Parameter (RP) for the specified quadrant or all quadrants if None."""
-        quadrant_options = ["US_CCW", "US_CW", "DS_CCW", "DS_CW"]
-        quadrant_upper = quadrant.upper() if quadrant is not None else None
-
-        if quadrant_upper is None:
-            return self._rp
-        elif quadrant_upper in self._rp:
-            return self._rp[quadrant_upper]
-        else:
-            raise ValueError(f"Quadrant '{quadrant}' not found in restraint parameters. Choose from {quadrant_options} or None for all quadrants.")
-
-    @property
-    def min_idx(self) -> tuple[int, int]:
-        """Tuple of (Axial index, Circumferential index) of the deepest point."""
-        axial_idx = self._df.index.get_loc(self._axial_min)
-        if isinstance(axial_idx, slice):
-            axial_idx = int(axial_idx.start)  # Take the start if slice
-        elif isinstance(axial_idx, np.ndarray):
-            # If mask, take the first True occurrence
-            axial_idx = int(np.where(axial_idx)[0][0])
-        circ_idx = self._df.columns.get_loc(self._circ_min)
-        if isinstance(circ_idx, slice):
-            circ_idx = int(circ_idx.start)  # Take the start if slice
-        elif isinstance(circ_idx, np.ndarray):
-            # If mask, take the first True occurrence
-            circ_idx = int(np.where(circ_idx)[0][0])
-        return (axial_idx, circ_idx)
-    @property
-    def df(self) -> pd.DataFrame:
-        """DataFrame of the dent contour."""
-        return self._df
-    @property
-    def axial_profile(self) -> pd.Series:
-        """Axial profile at the deepest point."""
-        return self._axial_profile
-    @property
-    def circ_profile(self) -> pd.Series:
-        """Circumferential profile at the deepest point."""
-        return pd.Series(self._circ_profile)
-    @property
-    def axial_us(self) -> pd.Series:
-        """Axial profile upstream of the deepest point."""
-        return self._axial_us
-    @property
-    def axial_ds(self) -> pd.Series:
-        """Axial profile downstream of the deepest point."""
-        return self._axial_ds
-    @property
-    def circ_ccw(self) -> pd.Series:
-        """Circumferential profile counter-clockwise of the deepest point."""
-        return self._circ_ccw
-    @property
-    def circ_cw(self) -> pd.Series:
-        """Circumferential profile clockwise of the deepest point."""
-        return self._circ_cw
-    @property
-    def axial_min(self) -> float:
-        """Axial location of the deepest point."""
-        return self._axial_min
-    @property
-    def circ_min(self) -> float:
-        """Circumferential location of the deepest point."""
-        return self._circ_min
-    @property
-    def depth(self) -> float:
-        """Depth of the dent (nominal radius - minimum radius)."""
-        return self._dent_depth
-    @property
-    def nominal_radius(self) -> float:
-        """Nominal internal radius."""
-        return self._nominal_radius
-    @property
-    def baseline_us(self) -> tuple[int, float, float]:
-        """Baseline radius upstream of the deepest point."""
-        return self._baseline_us
-    @property
-    def baseline_ds(self) -> tuple[int, float, float]:
-        """Baseline radius downstream of the deepest point."""
-        return self._baseline_ds
-    @property
-    def baseline_us_ccw(self) -> tuple[int, float, float]:
-        """Baseline radius counter-clockwise of the deepest point."""
-        return self._baseline_us_ccw
-    @property
-    def baseline_us_cw(self) -> tuple[int, float, float]:
-        """Baseline radius clockwise of the deepest point."""
-        return self._baseline_us_cw
-    @property
-    def baseline_ds_ccw(self) -> tuple[int, float, float]:
-        """Baseline radius counter-clockwise of the deepest point."""
-        return self._baseline_ds_ccw
-    @property
-    def baseline_ds_cw(self) -> tuple[int, float, float]:
-        """Baseline radius clockwise of the deepest point."""
-        return self._baseline_ds_cw
-    @property
-    def US_LAX(self) -> list[float]:
-        """US Axial Lengths for all percentages."""
-        temp_dict = self._results_axial_us["lengths"]
-        output_list = [val["length"] for val in temp_dict.values()]
-        return output_list
-    @property
-    def US_AAX(self) -> list[float]:
-        """US Axial Areas for all percentages."""
-        return list(self._results_axial_us["areas"].values())
-    @property
-    def DS_LAX(self) -> list[float]:
-        """DS Axial Lengths for all percentages."""
-        temp_dict = self._results_axial_ds["lengths"]
-        output_list = [val["length"] for val in temp_dict.values()]
-        return output_list
-    @property
-    def DS_AAX(self) -> list[float]:
-        """DS Axial Areas for all percentages."""
-        return list(self._results_axial_ds["areas"].values())
-    @property
-    def US_CCW_LTR(self) -> list[float]:
-        """US Circumferential CCW Lengths for all percentages."""
-        temp_dict = self._results_circ_us_ccw["lengths"]
-        output_list = [val["length"] for val in temp_dict.values()]
-        return output_list
-    @property
-    def US_CCW_ATR(self) -> list[float]:
-        """US Circumferential CCW Areas for all percentages."""
-        return list(self._results_circ_us_ccw["areas"].values())
-    @property
-    def US_CW_LTR(self) -> list[float]:
-        """US Circumferential CW Lengths for all percentages."""
-        temp_dict = self._results_circ_us_cw["lengths"]
-        output_list = [val["length"] for val in temp_dict.values()]
-        return output_list
-    @property
-    def US_CW_ATR(self) -> list[float]:
-        """US Circumferential CW Areas for all percentages."""
-        return list(self._results_circ_us_cw["areas"].values())
-    @property
-    def DS_CCW_LTR(self) -> list[float]:
-        """DS Circumferential CCW Lengths for all percentages."""
-        temp_dict = self._results_circ_ds_ccw["lengths"]
-        output_list = [val["length"] for val in temp_dict.values()]
-        return output_list
-    @property
-    def DS_CCW_ATR(self) -> list[float]:
-        """DS Circumferential CCW Areas for all percentages."""
-        return list(self._results_circ_ds_ccw["areas"].values())
-    @property
-    def DS_CW_LTR(self) -> list[float]:
-        """DS Circumferential CW Lengths for all percentages."""
-        temp_dict = self._results_circ_ds_cw["lengths"]
-        output_list = [val["length"] for val in temp_dict.values()]
-        return output_list
-    @property
-    def DS_CW_ATR(self) -> list[float]:
-        """DS Circumferential CW Areas for all percentages."""
-        return list(self._results_circ_ds_cw["areas"].values())
 
     def get_nominal(self, expected_nominal: float, threshold: float = 0.01, ignore_edge: float = 0.1) -> float:
         """
@@ -1220,3 +1070,159 @@ class DentProfiles:
         if file_path:
             fig.savefig(str(file_path).replace('.xlsx', '_Dent_Contour.png'), dpi=300)
             plt.close(fig)
+
+    def rp(self, quadrant: str | None = None) -> float | dict:
+        """Calculate the Restraint Parameter (RP) for the specified quadrant or all quadrants if None."""
+        quadrant_options = ["US_CCW", "US_CW", "DS_CCW", "DS_CW"]
+        quadrant_upper = quadrant.upper() if quadrant is not None else None
+
+        if quadrant_upper is None:
+            return self._rp
+        elif quadrant_upper in self._rp:
+            return self._rp[quadrant_upper]
+        else:
+            raise ValueError(f"Quadrant '{quadrant}' not found in restraint parameters. Choose from {quadrant_options} or None for all quadrants.")
+    @property
+    def min_idx(self) -> tuple[int, int]:
+        """Tuple of (Axial index, Circumferential index) of the deepest point."""
+        axial_idx = self._df.index.get_loc(self._axial_min)
+        if isinstance(axial_idx, slice):
+            axial_idx = int(axial_idx.start)  # Take the start if slice
+        elif isinstance(axial_idx, np.ndarray):
+            # If mask, take the first True occurrence
+            axial_idx = int(np.where(axial_idx)[0][0])
+        circ_idx = self._df.columns.get_loc(self._circ_min)
+        if isinstance(circ_idx, slice):
+            circ_idx = int(circ_idx.start)  # Take the start if slice
+        elif isinstance(circ_idx, np.ndarray):
+            # If mask, take the first True occurrence
+            circ_idx = int(np.where(circ_idx)[0][0])
+        return (axial_idx, circ_idx)
+    @property
+    def df(self) -> pd.DataFrame:
+        """DataFrame of the dent contour."""
+        return self._df
+    @property
+    def axial_profile(self) -> pd.Series:
+        """Axial profile at the deepest point."""
+        return self._axial_profile
+    @property
+    def circ_profile(self) -> pd.Series:
+        """Circumferential profile at the deepest point."""
+        return pd.Series(self._circ_profile)
+    @property
+    def axial_us(self) -> pd.Series:
+        """Axial profile upstream of the deepest point."""
+        return self._axial_us
+    @property
+    def axial_ds(self) -> pd.Series:
+        """Axial profile downstream of the deepest point."""
+        return self._axial_ds
+    @property
+    def circ_ccw(self) -> pd.Series:
+        """Circumferential profile counter-clockwise of the deepest point."""
+        return self._circ_ccw
+    @property
+    def circ_cw(self) -> pd.Series:
+        """Circumferential profile clockwise of the deepest point."""
+        return self._circ_cw
+    @property
+    def axial_min(self) -> float:
+        """Axial location of the deepest point."""
+        return self._axial_min
+    @property
+    def circ_min(self) -> float:
+        """Circumferential location of the deepest point."""
+        return self._circ_min
+    @property
+    def depth(self) -> float:
+        """Depth of the dent (nominal radius - minimum radius)."""
+        return self._dent_depth
+    @property
+    def nominal_radius(self) -> float:
+        """Nominal internal radius."""
+        return self._nominal_radius
+    @property
+    def baseline_us(self) -> tuple[int, float, float]:
+        """Baseline radius upstream of the deepest point."""
+        return self._baseline_us
+    @property
+    def baseline_ds(self) -> tuple[int, float, float]:
+        """Baseline radius downstream of the deepest point."""
+        return self._baseline_ds
+    @property
+    def baseline_us_ccw(self) -> tuple[int, float, float]:
+        """Baseline radius counter-clockwise of the deepest point."""
+        return self._baseline_us_ccw
+    @property
+    def baseline_us_cw(self) -> tuple[int, float, float]:
+        """Baseline radius clockwise of the deepest point."""
+        return self._baseline_us_cw
+    @property
+    def baseline_ds_ccw(self) -> tuple[int, float, float]:
+        """Baseline radius counter-clockwise of the deepest point."""
+        return self._baseline_ds_ccw
+    @property
+    def baseline_ds_cw(self) -> tuple[int, float, float]:
+        """Baseline radius clockwise of the deepest point."""
+        return self._baseline_ds_cw
+    @property
+    def US_LAX(self) -> list[float]:
+        """US Axial Lengths for all percentages."""
+        temp_dict = self._results_axial_us["lengths"]
+        output_list = [val["length"] for val in temp_dict.values()]
+        return output_list
+    @property
+    def US_AAX(self) -> list[float]:
+        """US Axial Areas for all percentages."""
+        return list(self._results_axial_us["areas"].values())
+    @property
+    def DS_LAX(self) -> list[float]:
+        """DS Axial Lengths for all percentages."""
+        temp_dict = self._results_axial_ds["lengths"]
+        output_list = [val["length"] for val in temp_dict.values()]
+        return output_list
+    @property
+    def DS_AAX(self) -> list[float]:
+        """DS Axial Areas for all percentages."""
+        return list(self._results_axial_ds["areas"].values())
+    @property
+    def US_CCW_LTR(self) -> list[float]:
+        """US Circumferential CCW Lengths for all percentages."""
+        temp_dict = self._results_circ_us_ccw["lengths"]
+        output_list = [val["length"] for val in temp_dict.values()]
+        return output_list
+    @property
+    def US_CCW_ATR(self) -> list[float]:
+        """US Circumferential CCW Areas for all percentages."""
+        return list(self._results_circ_us_ccw["areas"].values())
+    @property
+    def US_CW_LTR(self) -> list[float]:
+        """US Circumferential CW Lengths for all percentages."""
+        temp_dict = self._results_circ_us_cw["lengths"]
+        output_list = [val["length"] for val in temp_dict.values()]
+        return output_list
+    @property
+    def US_CW_ATR(self) -> list[float]:
+        """US Circumferential CW Areas for all percentages."""
+        return list(self._results_circ_us_cw["areas"].values())
+    @property
+    def DS_CCW_LTR(self) -> list[float]:
+        """DS Circumferential CCW Lengths for all percentages."""
+        temp_dict = self._results_circ_ds_ccw["lengths"]
+        output_list = [val["length"] for val in temp_dict.values()]
+        return output_list
+    @property
+    def DS_CCW_ATR(self) -> list[float]:
+        """DS Circumferential CCW Areas for all percentages."""
+        return list(self._results_circ_ds_ccw["areas"].values())
+    @property
+    def DS_CW_LTR(self) -> list[float]:
+        """DS Circumferential CW Lengths for all percentages."""
+        temp_dict = self._results_circ_ds_cw["lengths"]
+        output_list = [val["length"] for val in temp_dict.values()]
+        return output_list
+    @property
+    def DS_CW_ATR(self) -> list[float]:
+        """DS Circumferential CW Areas for all percentages."""
+        return list(self._results_circ_ds_cw["areas"].values())
