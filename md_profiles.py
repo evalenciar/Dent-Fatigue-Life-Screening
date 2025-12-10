@@ -357,9 +357,9 @@ class DentProfiles:
         self._results_circ_ds_cw = self.get_measurements(self._circ_cw, self._dent_depth_ds_cw, self._circ_min, self._baseline_ds_cw, self._percentages_circ, self._percentages_area, outbound_data=True)
         # Create three figures
         if self._file_path is not None:
-            self.create_lengths_figure("Axial", self._axial_us, self._axial_ds, self._results_axial_us, self._results_axial_ds, self._axial_min, self._file_path)
-            self.create_lengths_figure("Circ_US", self._circ_ccw, self._circ_cw, self._results_circ_us_ccw, self._results_circ_us_cw, self._circ_min, self._file_path)
-            self.create_lengths_figure("Circ_DS", self._circ_ccw, self._circ_cw, self._results_circ_ds_ccw, self._results_circ_ds_cw, self._circ_min, self._file_path)
+            self._create_lengths_figure("Axial", self._axial_us, self._axial_ds, self._results_axial_us, self._results_axial_ds, self._axial_min, self._file_path)
+            self._create_lengths_figure("Circ_US", self._circ_ccw, self._circ_cw, self._results_circ_us_ccw, self._results_circ_us_cw, self._circ_min, self._file_path)
+            self._create_lengths_figure("Circ_DS", self._circ_ccw, self._circ_cw, self._results_circ_ds_ccw, self._results_circ_ds_cw, self._circ_min, self._file_path)
     
     def _calculate_results(self):
         self._rp = {
@@ -400,15 +400,26 @@ class DentProfiles:
                 LTR_80=self._results_circ_ds_cw["lengths"][80]["length"],
             ),
         }
+
+    def _get_first_index(self, data: pd.Series, target_radius: float) -> int:
+        """Using the data series, find the first index where the data crosses below the target radius."""
+        # Linear interpolation to find the exact crossing point
+        pos_index = data.index.get_loc(target_radius)
+        if isinstance(pos_index, slice):
+            pos_index = int(pos_index.start)  # Take the start if slice
+        elif isinstance(pos_index, np.ndarray):
+            # If mask, take the first True occurrence
+            pos_index = int(np.where(pos_index)[0][0])
+        return pos_index
     
     def graph_lengths(self, quadrant: str):
         """Generate and display a matplotlib Figure for the specified quadrant ('Axial', 'Circ_US', 'Circ_DS')."""
         if quadrant == "Axial":
-            self.create_lengths_figure("Axial", self._axial_us, self._axial_ds, self._results_axial_us, self._results_axial_ds, self._axial_min)
+            self._create_lengths_figure("Axial", self._axial_us, self._axial_ds, self._results_axial_us, self._results_axial_ds, self._axial_min)
         elif quadrant == "Circ_US":
-            self.create_lengths_figure("Circ_US", self._circ_ccw, self._circ_cw, self._results_circ_us_ccw, self._results_circ_us_cw, self._circ_min)
+            self._create_lengths_figure("Circ_US", self._circ_ccw, self._circ_cw, self._results_circ_us_ccw, self._results_circ_us_cw, self._circ_min)
         elif quadrant == "Circ_DS":
-            self.create_lengths_figure("Circ_DS", self._circ_ccw, self._circ_cw, self._results_circ_ds_ccw, self._results_circ_ds_cw, self._circ_min)
+            self._create_lengths_figure("Circ_DS", self._circ_ccw, self._circ_cw, self._results_circ_ds_ccw, self._results_circ_ds_cw, self._circ_min)
         else:
             raise ValueError("Invalid quadrant specified. Choose from 'Axial', 'Circ_US', 'Circ_DS'.")
     
@@ -542,19 +553,38 @@ class DentProfiles:
         bool
             True if baseline was successfully updated, False otherwise.
         """
+        # if search_direction.lower() not in ["inward", "outward"]:
+        #     raise ValueError("search_direction must be either 'inward' or 'outward'.")
+        # if US_or_DS.upper() not in ["US", "DS"]:
+        #     raise ValueError("US_or_DS must be either 'US' or 'DS'.")
         try:
             if US_or_DS.upper() == "US":
-                data = self._axial_us if search_direction == "outward" else self._axial_us.iloc[::-1]
-                closest_idx = int((data - radius).abs().argmin())
+                if search_direction.lower() == "inward":
+                    data = self._axial_us
+                    closest_val = data[data < radius].first_valid_index()
+                elif search_direction.lower() == "outward": 
+                    data = self._axial_us.iloc[::-1]
+                    closest_val = data[data >= radius].first_valid_index()
+                if closest_val is None:
+                    return False
+                closest_idx = self._get_first_index(data, float(closest_val)) # type: ignore
                 # Convert back to original indexing if reversed
-                if search_direction != "outward":
+                if search_direction.lower() == "outward":
                     closest_idx = len(self._axial_us) - 1 - closest_idx
                 return self.set_baseline_by_index(US_or_DS, closest_idx)
                 
             elif US_or_DS.upper() == "DS":
-                data = self._axial_ds if search_direction == "outward" else self._axial_ds.iloc[::-1]
-                closest_idx = int((data - radius).abs().argmin())
-                if search_direction != "outward":
+                # Flip the search logic for DS segment
+                if search_direction.lower() == "outward":
+                    data = self._axial_ds
+                    closest_val = data[data < radius].first_valid_index()
+                elif search_direction.lower() == "inward": 
+                    data = self._axial_ds.iloc[::-1]
+                    closest_val = data[data >= radius].first_valid_index()
+                if closest_val is None:
+                    return False
+                closest_idx = self._get_first_index(data, float(closest_val)) # type: ignore
+                if search_direction.lower() == "inward":
                     closest_idx = len(self._axial_ds) - 1 - closest_idx
                 return self.set_baseline_by_index(US_or_DS, closest_idx)
                 
@@ -731,6 +761,63 @@ class DentProfiles:
         except Exception as e:
             result['reason'] = f'Error during validation: {str(e)}'
             return result
+        
+    def set_baseline(self, value: float | int, method: str = "position", **kwargs):
+        """
+        Set the baseline for either US or DS segment using one of the following methods:
+        - By index: set_baseline_by_index(US_or_DS, index)
+        - By position: set_baseline_by_position(US_or_DS, position)
+        - By radius: set_baseline_by_radius(US_or_DS, radius, search_direction)
+
+        Parameters
+        ----------
+        value : float or int
+            The value to use for setting the baseline (index, position, or radius).
+        method : str
+            The method to use for setting the baseline. Options:
+            - "index": value is an integer index in the profile data.
+            - "position": value is a float axial position (inches).
+            - "radius": value is a float radius (inches).
+        kwargs : dict
+            Keyword arguments corresponding to one of the baseline setting methods.
+            - `US_or_DS` (str) is required for all methods.
+            - `search_direction` (str) is required for "radius" method.
+        """
+        method_lower = method.lower()
+        method_options = ["index", "position", "radius"]
+        if method_lower not in method_options:
+            raise ValueError(f"Invalid method specified. Choose from {method_options}.")
+        if value < 0:
+            raise ValueError("Value for baseline setting must be non-negative.")
+        if method_lower == "index":
+            if not isinstance(value, int):
+                value = int(value)
+            US_or_DS = kwargs.get("US_or_DS", None)
+            if US_or_DS is None:
+                raise ValueError("US_or_DS parameter is required for index method.")
+            validation = self.validate_baseline(US_or_DS, value)
+            if not validation['valid']:
+                raise ValueError(f"Invalid baseline index: {validation['reason']}")
+            success = self.set_baseline_by_index(US_or_DS, value)
+            if not success:
+                raise ValueError("Failed to set baseline by index. Check index validity.")
+        elif method_lower == "position":
+            US_or_DS = kwargs.get("US_or_DS", None)
+            if US_or_DS is None:
+                raise ValueError("US_or_DS parameter is required for position method.")
+            success = self.set_baseline_by_position(US_or_DS, float(value))
+            if not success:
+                raise ValueError("Failed to set baseline by position. Check position validity.")
+        elif method_lower == "radius":
+            US_or_DS = kwargs.get("US_or_DS", None)
+            if US_or_DS is None:
+                raise ValueError("US_or_DS parameter is required for radius method.")
+            search_direction = kwargs.get("search_direction", "outward")
+            success = self.set_baseline_by_radius(US_or_DS, float(value), search_direction=search_direction)
+            if not success:
+                raise ValueError("Failed to set baseline by radius. Check radius validity.")
+        # After setting baseline, recalculate measurements
+        self.recalculate_measurements(US_DS=[US_or_DS])
 
     def get_nominal(self, expected_nominal: float, threshold: float = 0.01, ignore_edge: float = 0.1) -> float:
         """
@@ -851,12 +938,7 @@ class DentProfiles:
             circ_radius = float(data.loc[circ_deg])
         else:
             # Linear interpolation to find the exact crossing point
-            circ_index = data.index.get_loc(crossing_idx)
-            if isinstance(circ_index, slice):
-                circ_index = int(circ_index.start)  # Take the start if slice
-            elif isinstance(circ_index, np.ndarray):
-                # If mask, take the first True occurrence
-                circ_index = int(np.where(circ_index)[0][0])
+            circ_index = self._get_first_index(data, float(crossing_idx)) # type: ignore
             x0, x1 = float(data.index[circ_index - 1]), float(pd.Series([crossing_idx]).item())
             y0, y1 = float(data.loc[x0]), float(data.loc[x1])
             if y1 != y0:
@@ -926,13 +1008,8 @@ class DentProfiles:
                 interp_position = None
             else:
                 # Linear interpolation to find the exact crossing point
-                circ_index = data.index.get_loc(crossing_idx)
-                if isinstance(circ_index, slice):
-                    circ_index = int(circ_index.start)  # Take the start if slice
-                elif isinstance(circ_index, np.ndarray):
-                    # If mask, take the first True occurrence
-                    circ_index = int(np.where(circ_index)[0][0])
-                x0, x1 = float(data.index[circ_index - 1]), float(pd.Series([crossing_idx]).item())
+                val_index = self._get_first_index(data, float(crossing_idx)) # type: ignore
+                x0, x1 = float(data.index[val_index - 1]), float(pd.Series([crossing_idx]).item())
                 y0, y1 = float(data.loc[x0]), float(data.loc[x1])
                 if y1 != y0:
                     interp_position = x0 + (target_radius - y0) * (x1 - x0) / (y1 - y0)
@@ -980,7 +1057,7 @@ class DentProfiles:
 
         return {"lengths": lengths, "areas": cum_areas}
 
-    def create_lengths_figure(self, 
+    def _create_lengths_figure(self, 
                       quadrant: str, 
                       profile_us: pd.Series, 
                       profile_ds: pd.Series, 
@@ -1036,7 +1113,17 @@ class DentProfiles:
         ax.plot(profile_us.index, profile_us, label=us_label, color="#000000")
         ax.plot(profile_ds.index, profile_ds, label=ds_label, color="#ff0000", linestyle='--')
 
-        # Plot the nominal radius line
+        # Plot the baseline line. If quadrant is axial, plot both US and DS baselines
+        if quadrant.lower() == "axial":
+            ax.plot([self._baseline_us[1], dent_location], [self._baseline_us[2], self._baseline_us[2]], color='gray', linestyle='-', linewidth=1, label='US Baseline')
+            ax.plot([dent_location, self._baseline_ds[1]], [self._baseline_ds[2], self._baseline_ds[2]], color='gray', linestyle='--', linewidth=1, label='DS Baseline')
+        elif quadrant.lower() == "circ_us":
+            ax.plot([self._baseline_us_ccw[1], dent_location], [self._baseline_us_ccw[2], self._baseline_us_ccw[2]], color='gray', linestyle='-', linewidth=1, label='US-CCW Baseline')
+            ax.plot([dent_location, self._baseline_us_cw[1]], [self._baseline_us_cw[2], self._baseline_us_cw[2]], color='gray', linestyle='--', linewidth=1, label='US-CW Baseline')
+        elif quadrant.lower() == "circ_ds":
+            ax.plot([self._baseline_ds_ccw[1], dent_location], [self._baseline_ds_ccw[2], self._baseline_ds_ccw[2]], color='gray', linestyle='-', linewidth=1, label='DS-CCW Baseline')
+            ax.plot([dent_location, self._baseline_ds_cw[1]], [self._baseline_ds_cw[2], self._baseline_ds_cw[2]], color='gray', linestyle='--', linewidth=1, label='DS-CW Baseline')
+        
         # ax.axhline(y=self._nominal_radius, color='gray', linestyle=':', linewidth=1, label='Nominal Radius')
 
         for i, (p, vals) in enumerate(results_us["lengths"].items()):
@@ -1144,29 +1231,29 @@ class DentProfiles:
         """Nominal internal radius."""
         return self._nominal_radius
     @property
-    def baseline_us(self) -> tuple[int, float, float]:
-        """Baseline radius upstream of the deepest point."""
-        return self._baseline_us
+    def baseline_us(self) -> dict:
+        """Baseline upstream index, axial position, and radius of the deepest point."""
+        return {"index": self._baseline_us[0], "axial_position": self._baseline_us[1], "radius": self._baseline_us[2]}
     @property
-    def baseline_ds(self) -> tuple[int, float, float]:
-        """Baseline radius downstream of the deepest point."""
-        return self._baseline_ds
+    def baseline_ds(self) -> dict:
+        """Baseline downstream index, axial position, and radius of the deepest point."""
+        return {"index": self._baseline_ds[0], "axial_position": self._baseline_ds[1], "radius": self._baseline_ds[2]}
     @property
-    def baseline_us_ccw(self) -> tuple[int, float, float]:
-        """Baseline radius counter-clockwise of the deepest point."""
-        return self._baseline_us_ccw
+    def baseline_us_ccw(self) -> dict:
+        """Baseline upstream counter-clockwise index, axial position, and radius of the deepest point."""
+        return {"index": self._baseline_us_ccw[0], "axial_position": self._baseline_us_ccw[1], "radius": self._baseline_us_ccw[2]}
     @property
-    def baseline_us_cw(self) -> tuple[int, float, float]:
-        """Baseline radius clockwise of the deepest point."""
-        return self._baseline_us_cw
+    def baseline_us_cw(self) -> dict:
+        """Baseline upstream clockwise index, axial position, and radius of the deepest point."""
+        return {"index": self._baseline_us_cw[0], "axial_position": self._baseline_us_cw[1], "radius": self._baseline_us_cw[2]}
     @property
-    def baseline_ds_ccw(self) -> tuple[int, float, float]:
-        """Baseline radius counter-clockwise of the deepest point."""
-        return self._baseline_ds_ccw
+    def baseline_ds_ccw(self) -> dict:
+        """Baseline downstream counter-clockwise index, axial position, and radius of the deepest point."""
+        return {"index": self._baseline_ds_ccw[0], "axial_position": self._baseline_ds_ccw[1], "radius": self._baseline_ds_ccw[2]}
     @property
-    def baseline_ds_cw(self) -> tuple[int, float, float]:
-        """Baseline radius clockwise of the deepest point."""
-        return self._baseline_ds_cw
+    def baseline_ds_cw(self) -> dict:
+        """Baseline downstream clockwise index, axial position, and radius of the deepest point."""
+        return {"index": self._baseline_ds_cw[0], "axial_position": self._baseline_ds_cw[1], "radius": self._baseline_ds_cw[2]}
     @property
     def US_LAX(self) -> list[float]:
         """US Axial Lengths for all percentages."""
