@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 import math
 import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle
 
 def find_deflection(data: pd.Series, 
                     initial_guess: float = 0.5,
@@ -317,7 +318,7 @@ class DentProfiles:
         self._circ_ccw = pd.Series(self._circ_profile.loc[:self._circ_min]) # type: ignore
         self._circ_cw = pd.Series(self._circ_profile.loc[self._circ_min:]) # type: ignore
         # Determine the nominal internal radius
-        self._nominal_radius = self.get_nominal(expected_nominal=self._expected_nominal, ignore_edge=self._ignore_edge)
+        self._nominal_radius = self._get_nominal(expected_nominal=self._expected_nominal, ignore_edge=self._ignore_edge)
         self._dent_depth = self._nominal_radius - self._radius_min
         # Ensure that dent depth is non-negative
         if self._dent_depth < 0:
@@ -326,13 +327,13 @@ class DentProfiles:
 
     def _measure_data(self):
         # Determine the baseline index and radii for all four quadrants (index, radius)
-        self._baseline_us = self.get_baseline(self._axial_us, axial_circ="axial")
-        self._baseline_ds = self.get_baseline(self._axial_ds, axial_circ="axial")
+        self._baseline_us = self._get_baseline(self._axial_us, axial_circ="axial")
+        self._baseline_ds = self._get_baseline(self._axial_ds, axial_circ="axial")
         # The Circumferential baselines will use the US and DS axial baselines. But will need to find the index in the circumferential profile
-        self._baseline_us_ccw = self.get_baseline_circ(self._circ_ccw, self._baseline_us[2])
-        self._baseline_us_cw = self.get_baseline_circ(self._circ_cw, self._baseline_us[2], outbound_data=True)
-        self._baseline_ds_ccw = self.get_baseline_circ(self._circ_ccw, self._baseline_ds[2])
-        self._baseline_ds_cw = self.get_baseline_circ(self._circ_cw, self._baseline_ds[2], outbound_data=True)
+        self._baseline_us_ccw = self._get_baseline_circ(self._circ_ccw, self._baseline_us[2])
+        self._baseline_us_cw = self._get_baseline_circ(self._circ_cw, self._baseline_us[2], outbound_data=True)
+        self._baseline_ds_ccw = self._get_baseline_circ(self._circ_ccw, self._baseline_ds[2])
+        self._baseline_ds_cw = self._get_baseline_circ(self._circ_cw, self._baseline_ds[2], outbound_data=True)
         # Re-establish the dent depth value for each quadrant
         self._dent_depth_us = self._baseline_us[2] - self._radius_min
         self._dent_depth_ds = self._baseline_ds[2] - self._radius_min
@@ -342,19 +343,19 @@ class DentProfiles:
         self._dent_depth_ds_cw = self._baseline_ds_cw[2] - self._radius_min
         # If equal_baseline is True, find the DS baseline matching the US baseline radius
         if self._equal_baseline:
-            confirmation = self.set_baseline_by_radius("DS", self._baseline_us[2], search_direction="outward")
+            confirmation = self._set_baseline_by_radius("DS", self._baseline_us[2], search_direction="outward")
             if not confirmation:
                 # Attempt to make US match DS instead
-                confirmation = self.set_baseline_by_radius("US", self._baseline_ds[2], search_direction="outward")
+                confirmation = self._set_baseline_by_radius("US", self._baseline_ds[2], search_direction="outward")
                 if not confirmation:
                     raise ValueError("Unable to set equal baselines between US and DS segments.")
         # Iterate through all four quadrants to determine lengths and areas
-        self._results_axial_us = self.get_measurements(self._axial_us, self._dent_depth_us, self._axial_min, self._baseline_us, self._percentages_axial, self._percentages_area)
-        self._results_axial_ds = self.get_measurements(self._axial_ds, self._dent_depth_ds, self._axial_min, self._baseline_ds, self._percentages_axial, self._percentages_area, outbound_data=True)
-        self._results_circ_us_ccw = self.get_measurements(self._circ_ccw, self._dent_depth_us_ccw, self._circ_min, self._baseline_us_ccw, self._percentages_circ, self._percentages_area)
-        self._results_circ_us_cw = self.get_measurements(self._circ_cw, self._dent_depth_us_cw, self._circ_min, self._baseline_us_cw, self._percentages_circ, self._percentages_area, outbound_data=True)
-        self._results_circ_ds_ccw = self.get_measurements(self._circ_ccw, self._dent_depth_ds_ccw, self._circ_min, self._baseline_ds_ccw, self._percentages_circ, self._percentages_area)
-        self._results_circ_ds_cw = self.get_measurements(self._circ_cw, self._dent_depth_ds_cw, self._circ_min, self._baseline_ds_cw, self._percentages_circ, self._percentages_area, outbound_data=True)
+        self._results_axial_us = self._get_measurements(self._axial_us, self._dent_depth_us, self._axial_min, self._baseline_us, self._percentages_axial, self._percentages_area)
+        self._results_axial_ds = self._get_measurements(self._axial_ds, self._dent_depth_ds, self._axial_min, self._baseline_ds, self._percentages_axial, self._percentages_area, outbound_data=True)
+        self._results_circ_us_ccw = self._get_measurements(self._circ_ccw, self._dent_depth_us_ccw, self._circ_min, self._baseline_us_ccw, self._percentages_circ, self._percentages_area)
+        self._results_circ_us_cw = self._get_measurements(self._circ_cw, self._dent_depth_us_cw, self._circ_min, self._baseline_us_cw, self._percentages_circ, self._percentages_area, outbound_data=True)
+        self._results_circ_ds_ccw = self._get_measurements(self._circ_ccw, self._dent_depth_ds_ccw, self._circ_min, self._baseline_ds_ccw, self._percentages_circ, self._percentages_area)
+        self._results_circ_ds_cw = self._get_measurements(self._circ_cw, self._dent_depth_ds_cw, self._circ_min, self._baseline_ds_cw, self._percentages_circ, self._percentages_area, outbound_data=True)
         # Create three figures
         if self._file_path is not None:
             self._create_lengths_figure("Axial", self._axial_us, self._axial_ds, self._results_axial_us, self._results_axial_ds, self._axial_min, self._file_path)
@@ -400,6 +401,8 @@ class DentProfiles:
                 LTR_80=self._results_circ_ds_cw["lengths"][80]["length"],
             ),
         }
+        self._restraint_condition = self._get_restraint()
+        self._interaction = self._get_interaction()
 
     def _get_first_index(self, data: pd.Series, target_radius: float) -> int:
         """Using the data series, find the first index where the data crosses below the target radius."""
@@ -454,7 +457,7 @@ class DentProfiles:
             
         return data_map[quadrant_upper]
     
-    def set_baseline_by_index(self, US_or_DS: str, index: int) -> bool:
+    def _set_baseline_by_index(self, US_or_DS: str, index: int) -> bool:
         """
         Manually set the baseline for either US or DS using an index position.
         
@@ -479,8 +482,8 @@ class DentProfiles:
                 self._baseline_us = (index, axial_pos, radius)
                 self._dent_depth_us = radius - self._radius_min
                 # Update circumferential baselines that depend on US
-                self._baseline_us_ccw = self.get_baseline_circ(self._circ_ccw, radius)
-                self._baseline_us_cw = self.get_baseline_circ(self._circ_cw, radius, outbound_data=True)
+                self._baseline_us_ccw = self._get_baseline_circ(self._circ_ccw, radius)
+                self._baseline_us_cw = self._get_baseline_circ(self._circ_cw, radius, outbound_data=True)
                 self._dent_depth_us_ccw = self._baseline_us_ccw[2] - self._radius_min
                 self._dent_depth_us_cw = self._baseline_us_cw[2] - self._radius_min
                 
@@ -492,8 +495,8 @@ class DentProfiles:
                 self._baseline_ds = (index, axial_pos, radius)
                 self._dent_depth_ds = radius - self._radius_min
                 # Update circumferential baselines that depend on DS
-                self._baseline_ds_ccw = self.get_baseline_circ(self._circ_ccw, radius)
-                self._baseline_ds_cw = self.get_baseline_circ(self._circ_cw, radius, outbound_data=True)
+                self._baseline_ds_ccw = self._get_baseline_circ(self._circ_ccw, radius)
+                self._baseline_ds_cw = self._get_baseline_circ(self._circ_cw, radius, outbound_data=True)
                 self._dent_depth_ds_ccw = self._baseline_ds_ccw[2] - self._radius_min
                 self._dent_depth_ds_cw = self._baseline_ds_cw[2] - self._radius_min
             else:
@@ -503,7 +506,7 @@ class DentProfiles:
         except Exception:
             return False
     
-    def set_baseline_by_position(self, US_or_DS: str, position: float) -> bool:
+    def _set_baseline_by_position(self, US_or_DS: str, position: float) -> bool:
         """
         Manually set the baseline for either US or DS using an axial position.
         The function will find the closest data point to the specified position.
@@ -523,18 +526,18 @@ class DentProfiles:
         try:
             if US_or_DS.upper() == "US":
                 closest_idx = int(abs(self._axial_us.index - position).argmin()) # type: ignore
-                return self.set_baseline_by_index(US_or_DS, closest_idx)
+                return self._set_baseline_by_index(US_or_DS, closest_idx)
                 
             elif US_or_DS.upper() == "DS":
                 closest_idx = int(abs(self._axial_ds.index - position).argmin()) # type: ignore
-                return self.set_baseline_by_index(US_or_DS, closest_idx)
+                return self._set_baseline_by_index(US_or_DS, closest_idx)
             
             else:
                 return False
         except Exception:
             return False
     
-    def set_baseline_by_radius(self, US_or_DS: str, radius: float, search_direction: str = "outward") -> bool:
+    def _set_baseline_by_radius(self, US_or_DS: str, radius: float, search_direction: str = "outward") -> bool:
         """
         Manually set the baseline for either US or DS by finding the nearest point with the specified radius.
         
@@ -571,7 +574,7 @@ class DentProfiles:
                 # Convert back to original indexing if reversed
                 if search_direction.lower() == "outward":
                     closest_idx = len(self._axial_us) - 1 - closest_idx
-                return self.set_baseline_by_index(US_or_DS, closest_idx)
+                return self._set_baseline_by_index(US_or_DS, closest_idx)
                 
             elif US_or_DS.upper() == "DS":
                 # Flip the search logic for DS segment
@@ -586,7 +589,7 @@ class DentProfiles:
                 closest_idx = self._get_first_index(data, float(closest_val)) # type: ignore
                 if search_direction.lower() == "inward":
                     closest_idx = len(self._axial_ds) - 1 - closest_idx
-                return self.set_baseline_by_index(US_or_DS, closest_idx)
+                return self._set_baseline_by_index(US_or_DS, closest_idx)
                 
             else:
                 return False
@@ -617,35 +620,35 @@ class DentProfiles:
         for segment in US_DS:
             if segment.upper() == "US":
                 # US Axial
-                self._results_axial_us = self.get_measurements(
+                self._results_axial_us = self._get_measurements(
                     self._axial_us, self._dent_depth_us, self._axial_min, 
                     self._baseline_us, self._percentages_axial, self._percentages_area
                 )
                 # US CCW
-                self._results_circ_us_ccw = self.get_measurements(
+                self._results_circ_us_ccw = self._get_measurements(
                     self._circ_ccw, self._dent_depth_us_ccw, self._circ_min, 
                     self._baseline_us_ccw, self._percentages_circ, self._percentages_area
                 )
                 # US CW
-                self._results_circ_us_cw = self.get_measurements(
+                self._results_circ_us_cw = self._get_measurements(
                     self._circ_cw, self._dent_depth_us_cw, self._circ_min, 
                     self._baseline_us_cw, self._percentages_circ, self._percentages_area, 
                     outbound_data=True
                 )
             elif segment.upper() == "DS":
                 # DS Axial
-                self._results_axial_ds = self.get_measurements(
+                self._results_axial_ds = self._get_measurements(
                     self._axial_ds, self._dent_depth_ds, self._axial_min, 
                     self._baseline_ds, self._percentages_axial, self._percentages_area, 
                     outbound_data=True
                 )
                 # DS CCW
-                self._results_circ_ds_ccw = self.get_measurements(
+                self._results_circ_ds_ccw = self._get_measurements(
                     self._circ_ccw, self._dent_depth_ds_ccw, self._circ_min, 
                     self._baseline_ds_ccw, self._percentages_circ, self._percentages_area
                 )
                 # DS CW
-                self._results_circ_ds_cw = self.get_measurements(
+                self._results_circ_ds_cw = self._get_measurements(
                     self._circ_cw, self._dent_depth_ds_cw, self._circ_min, 
                     self._baseline_ds_cw, self._percentages_circ, self._percentages_area, 
                     outbound_data=True
@@ -691,7 +694,7 @@ class DentProfiles:
             'dent_depth': dent_depth
         }
     
-    def validate_baseline(self, US_or_DS: str, index: int) -> dict:
+    def _validate_baseline(self, US_or_DS: str, index: int) -> dict:
         """
         Validate if a proposed baseline index is reasonable without applying it.
         
@@ -765,9 +768,9 @@ class DentProfiles:
     def set_baseline(self, value: float | int, method: str = "position", **kwargs):
         """
         Set the baseline for either US or DS segment using one of the following methods:
-        - By index: set_baseline_by_index(US_or_DS, index)
-        - By position: set_baseline_by_position(US_or_DS, position)
-        - By radius: set_baseline_by_radius(US_or_DS, radius, search_direction)
+        - By index: _set_baseline_by_index(US_or_DS, index)
+        - By position: _set_baseline_by_position(US_or_DS, position)
+        - By radius: _set_baseline_by_radius(US_or_DS, radius, search_direction)
 
         Parameters
         ----------
@@ -795,17 +798,17 @@ class DentProfiles:
             US_or_DS = kwargs.get("US_or_DS", None)
             if US_or_DS is None:
                 raise ValueError("US_or_DS parameter is required for index method.")
-            validation = self.validate_baseline(US_or_DS, value)
+            validation = self._validate_baseline(US_or_DS, value)
             if not validation['valid']:
                 raise ValueError(f"Invalid baseline index: {validation['reason']}")
-            success = self.set_baseline_by_index(US_or_DS, value)
+            success = self._set_baseline_by_index(US_or_DS, value)
             if not success:
                 raise ValueError("Failed to set baseline by index. Check index validity.")
         elif method_lower == "position":
             US_or_DS = kwargs.get("US_or_DS", None)
             if US_or_DS is None:
                 raise ValueError("US_or_DS parameter is required for position method.")
-            success = self.set_baseline_by_position(US_or_DS, float(value))
+            success = self._set_baseline_by_position(US_or_DS, float(value))
             if not success:
                 raise ValueError("Failed to set baseline by position. Check position validity.")
         elif method_lower == "radius":
@@ -813,13 +816,13 @@ class DentProfiles:
             if US_or_DS is None:
                 raise ValueError("US_or_DS parameter is required for radius method.")
             search_direction = kwargs.get("search_direction", "outward")
-            success = self.set_baseline_by_radius(US_or_DS, float(value), search_direction=search_direction)
+            success = self._set_baseline_by_radius(US_or_DS, float(value), search_direction=search_direction)
             if not success:
                 raise ValueError("Failed to set baseline by radius. Check radius validity.")
         # After setting baseline, recalculate measurements
         self.recalculate_measurements(US_DS=[US_or_DS])
 
-    def get_nominal(self, expected_nominal: float, threshold: float = 0.01, ignore_edge: float = 0.1) -> float:
+    def _get_nominal(self, expected_nominal: float, threshold: float = 0.01, ignore_edge: float = 0.1) -> float:
         """
         Determine the nominal radius from the profile data.
 
@@ -846,7 +849,7 @@ class DentProfiles:
             nominal_radius = expected_nominal
         return nominal_radius
 
-    def get_baseline(self, 
+    def _get_baseline(self, 
                      data: pd.Series, 
                      axial_circ: str = "axial", 
                      axial_default: float = 0.025, 
@@ -898,7 +901,7 @@ class DentProfiles:
             closest_axial = float(data.index[closest_idx])
             return closest_idx, closest_axial, baseline_default
 
-    def get_baseline_circ(self, 
+    def _get_baseline_circ(self, 
                           data: pd.Series, 
                           baseline_axial_radius: float, 
                           outbound_data: bool = False) -> tuple[int, float, float]:
@@ -949,7 +952,7 @@ class DentProfiles:
 
         return circ_index, circ_deg, circ_radius
     
-    def get_measurements(self, 
+    def _get_measurements(self, 
                          data: pd.Series, 
                          dent_depth: float, 
                          dent_location: float, 
@@ -1056,6 +1059,63 @@ class DentProfiles:
                 cum_areas[pct] = sum(area for _, area in areas[:idx_at_pct + 1]) if idx_at_pct is not None else None
 
         return {"lengths": lengths, "areas": cum_areas}
+    
+    def _get_restraint(self, threshold: float = 20, threshold_range: float = 5) -> str:
+        """
+        Determine the restraint condition based on the maximum restraint parameter.
+        
+        Returns
+        -------
+        str
+            The restraint condition: "Unrestrained", "Shallow Restrained", "Deep Restrained"
+        """
+        # Check that restraint parameter values have been calculated
+        if self._rp is None:
+            raise ValueError("Restraint parameters have not been calculated.")
+        max_rp = max(self._rp.values())
+        # Confirm that a valid max_rp was found
+        if max_rp is None or math.isnan(max_rp) or math.isinf(max_rp) or max_rp < 0:
+            raise ValueError("Unable to determine maximum restraint parameter.")
+        # Determine if shallow or deep based on OD
+        if self._OD <= 12.75:
+            is_shallow = self._dent_depth_percent < 4.0
+        else:  # self._OD > 12.75
+            is_shallow = self._dent_depth_percent < 2.5
+        
+        if max_rp < (threshold - threshold_range):
+            return "Unrestrained"
+        elif max_rp > (threshold + threshold_range):
+            return "Shallow Restrained" if is_shallow else "Deep Restrained"
+        elif (threshold - threshold_range) <= max_rp <= (threshold + threshold_range):
+            return "Shallow Restrained" if is_shallow else "Deep Restrained"
+        else:
+            raise ValueError("Unable to determine restraint condition.")
+        
+    def _get_interaction(self) -> tuple[float, float]:
+        """
+        Calculate the interaction values for axial and circumferential dent measurements.
+
+        Returns
+        -------
+        tuple of float
+            The axial distance (dc) in inches for the girth weld interaction; and the half angle (theta) in degrees 
+            for the long seam weld interaction sector.
+        """
+        # Check that a restraint condition has been determined
+        if self._restraint_condition is None:
+            raise ValueError("Restraint condition has not been determined.")
+        if "unrestrained" in self._restraint_condition.lower():
+            # a = 0.129, b = 4.314
+            dc = 0.129 * self._OD + 4.314
+            theta = 30.0
+            return dc, theta
+        elif "restrained" in self._restraint_condition.lower():
+            # a = 0.418, b = 3.723
+            dc = 0.418 * self._OD + 3.723
+            theta = 40.0
+            return dc, theta
+        else:
+            raise ValueError("Unable to determine interaction values.")
 
     def _create_lengths_figure(self, 
                       quadrant: str, 
@@ -1141,17 +1201,47 @@ class DentProfiles:
             fig.savefig(str(file_path).replace('.xlsx', f'_{quadrant}_Lengths.png'), dpi=300)
             plt.close(fig)
         
-    def graph_contours(self, file_path: str | None = None, palette: str = 'viridis'):
+    def graph_contours(self, file_path: str | None = None, bounding_box: bool = True, palette: str = 'viridis'):
         """
-        Create a matplotlib figure showing the dent contour with the minimum point highlighted.
+        Create a matplotlib figure showing the dent contour with the minimum point highlighted. Add a bounding box
         """
         fig, ax = plt.subplots(figsize=(12, 5))
         c = ax.contourf(self._df.index, self._df.columns, self._df.values.T, cmap=palette)
         fig.colorbar(c, ax=ax, label='Radius (in)')
-        ax.plot(self._axial_min, self._circ_min, 'ro', label='Dent Minimum')
+        # Add an axhline and axvline at the minimum point
+        ax.axvline(x=self._axial_min, color='red', linestyle='--', linewidth=0.8)
+        ax.axhline(y=self._circ_min, color='red', linestyle='--', linewidth=0.8)
+        ax.plot(self._axial_min, self._circ_min, marker='o', color='red', markersize=8, label='Dent Minimum')
         ax.set_title('Dent Contour')
         ax.set_ylabel('Circumferential Position (deg)')
         ax.set_xlabel('Axial Position (in)')
+        if bounding_box:
+            # Draw a rectangle around the dent area using the baselines
+            rect = Rectangle(
+                (self._baseline_us[1], self._baseline_us_ccw[1]),
+                self._baseline_ds[1] - self._baseline_us[1],
+                self._baseline_us_cw[1] - self._baseline_us_ccw[1],
+                linewidth=1,
+                edgecolor='white',
+                facecolor='none',
+                linestyle='--'
+            )
+            ax.add_patch(rect)
+            # Add legend entry for bounding box
+            ax.plot([], [], color='white', linestyle='--', label='Baseline Boundary')
+            # Draw a rectangle around the dent using the interaction criteria
+            rect2 = Rectangle(
+                (self._axial_min - self._interaction[0], self._circ_min - self._interaction[1]),
+                2 * self._interaction[0],
+                2 * self._interaction[1],
+                linewidth=1.5,
+                edgecolor='black',
+                facecolor='none',
+                linestyle=':'
+            )
+            ax.add_patch(rect2)
+            # Add legend entry for interaction box
+            ax.plot([], [], color='black', linestyle=':', label='Interaction Boundary')
         ax.legend()
         fig.tight_layout()
         if file_path:
@@ -1226,6 +1316,10 @@ class DentProfiles:
     def depth(self) -> float:
         """Depth of the dent (nominal radius - minimum radius)."""
         return self._dent_depth
+    @property
+    def length(self) -> float:
+        """Axial length of the dent."""
+        return self._baseline_ds[1] - self._baseline_us[1]
     @property
     def nominal_radius(self) -> float:
         """Nominal internal radius."""
